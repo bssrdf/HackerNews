@@ -21,7 +21,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   let ErrorMessageFontSize: CGFloat = 16
   let FirebaseRef = "https://hacker-news.firebaseio.com/v0/"
   let ItemChildRef = "item"
-  let StoryTypeChildRefMap = [StoryType.top: "topstories", .new: "newstories", .show: "showstories"]
+  let StoryTypeChildRefMap = [StoryType.top: "topstories", .new: "newstories", .show: "showstories", .ask: "askstories"]
   let StoryLimit: UInt = 30
   let DefaultStoryType = StoryType.top
   
@@ -37,7 +37,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   // MARK: Enums
   
   enum StoryType {
-    case top, new, show
+    case top, new, show, ask
   }
   
   // MARK: Structs
@@ -182,7 +182,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
       storyType = .new
     } else if sender.selectedSegmentIndex == 2 {
       storyType = .show
-    } else {
+    } else if sender.selectedSegmentIndex == 3 {
+      storyType = .ask
+    }
+    else {
       print("Bad segment index!")
     }
     
