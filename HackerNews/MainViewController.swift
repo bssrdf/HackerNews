@@ -46,6 +46,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let title: String
     let url: String?
     let by: String
+    let kids : [Int]?
     let score: Int
   }
   
@@ -121,9 +122,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let title = data["title"] as! String
     let url = data["url"] as? String
     let by = data["by"] as! String
+    let kids = data["kids"] as? [Int]
     let score = data["score"] as! Int
     
-    return Story(title: title, url: url, by: by, score: score)
+    return Story(title: title, url: url, by: by, kids: kids, score: score)
   }
   
   func loadingFailed(_ error: Error?) -> Void {
@@ -148,10 +150,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let story = stories[indexPath.row]
-    let cell = tableView.dequeueReusableCell(withIdentifier: PostCellIdentifier) as UITableViewCell!
-    cell?.textLabel?.text = story.title
-    cell?.detailTextLabel?.text = "\(story.score) points by \(story.by)"
-    return cell!
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCellIdentifier) else{
+      fatalError("The dequeued cell is not an instance of UITableViewCell")
+    }
+    cell.textLabel?.text = story.title
+    var num_comments = 0
+    if let kids = story.kids {
+      num_comments = kids.count
+    }
+    cell.detailTextLabel?.text = "\(story.score) points by \(story.by) with \(num_comments) comments"
+    return cell
   }
   
   // MARK: UITableViewDelegate
