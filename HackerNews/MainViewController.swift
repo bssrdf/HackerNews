@@ -43,14 +43,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   // MARK: Structs
   
-  struct Story {
+  /*struct Story {
+    let id: Int
     let title: String
     let url: String?
     let by: String
     let kids : [Int]?
     let score: Int
     let descendants: Int
-  }
+  }*/
   
   // MARK: Initialization
   
@@ -130,20 +131,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
           }, withCancel: self.loadingFailed)
       }
       }, withCancel: self.loadingFailed)
-    
-    
-    print("end of retrieveStories")
+  
   }
   
   
   func extractComment(_ snapshot: FDataSnapshot) -> Comment {
     let data = snapshot.value as! Dictionary<String, Any>
-   
+    let id = data["id"] as! Int
     let by = data["by", default: "anonymous"] as! String
     let kids = data["kids"] as? [Int]
     let text = data["text"] as? String
-    print("author is "+by)
-    return Comment(by: by, kids: kids, text: text)
+    //print("author is "+by)
+    return Comment(id: id, by: by, kids: kids, text: text)
   }
   
   func extractStory(_ snapshot: FDataSnapshot) -> Story {
@@ -153,9 +152,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let by = data["by"] as! String
     let kids = data["kids"] as? [Int]
     let score = data["score"] as! Int
+    let id = data["id"] as! Int
     let numdes = data["descendants"] as! Int
     
-    return Story(title: title, url: url, by: by, kids: kids, score: score, descendants: numdes)
+    return Story(id:id, title: title, url: url, by: by, kids: kids, score: score, descendants: numdes)
   }
   
   func loadingFailed(_ error: Error?) -> Void {
@@ -192,24 +192,48 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     return cell
   }
   
+  func retrieveComments(root comment: Comment) -> Void{
+    
+    self.comments.append(comment)
+    
+    if let kids = comment.kids{
+       //var sortedComments = [Comment]()
+       for kid in kids{
+          let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(kid))
+          query?.observeSingleEvent(of: .value, with: { snapshot in
+           let childcomment = self.extractComment(snapshot!)
+            self.retrieveComments(root: childcomment)
+            
+        }, withCancel: self.loadingFailed)
+       }
+    }
+    
+  }
+  
+  
   // MARK: UITableViewDelegate
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     
     let story = stories[indexPath.row]
-    
+    print("story id is: \(story.id)")
+    self.comments.removeAll()
     if let kids = story.kids{
-      var sortedComments = [Comment]()
+      //var sortedComments = [Comment]()
       for id in kids{
          //print("first story's comment # \(id)")
          let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(id))
          query?.observeSingleEvent(of: .value, with: { snapshot in
-          
-          sortedComments.append(self.extractComment(snapshot!))
+          let comment = self.extractComment(snapshot!)
+          /*sortedComments.append(comment)
+          if sortedComments.count == kids.count{
+             self.comments = sortedComments
+          }*/
+          self.retrieveComments(root: comment)
           }, withCancel: self.loadingFailed)
       }
-      self.comments = sortedComments
+     
       //print("there are \(self.comments.count) in story # \(indexPath.row)")
     }
     if let url = story.url {
