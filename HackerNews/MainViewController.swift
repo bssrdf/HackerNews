@@ -27,6 +27,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   var firebase: Firebase!
   var stories: [Story]! = []
+  var comments: [Comment]! = []
   var storyType: StoryType!
   var retrievingStories: Bool!
   var refreshControl: UIRefreshControl!
@@ -108,6 +109,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
               sortedStories.append(storiesMap[storyId]!)
             }
             self.stories = sortedStories
+            let story = self.stories[0]
+            if let kids = story.kids{
+              var sortedComments = [Comment]()
+              for id in kids{
+                 //print("first story's comment # \(id)")
+                 let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(id))
+                 query?.observeSingleEvent(of: .value, with: { snapshot in
+                  
+                  sortedComments.append(self.extractComment(snapshot!))
+                  }, withCancel: self.loadingFailed)
+              }
+              self.comments = sortedComments
+            }
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
             self.retrievingStories = false
@@ -116,6 +130,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
           }, withCancel: self.loadingFailed)
       }
       }, withCancel: self.loadingFailed)
+    
+    
+    print("end of retrieveStories")
+  }
+  
+  
+  func extractComment(_ snapshot: FDataSnapshot) -> Comment {
+    let data = snapshot.value as! Dictionary<String, Any>
+   
+    let by = data["by", default: "anonymous"] as! String
+    let kids = data["kids"] as? [Int]
+    let text = data["text"] as? String
+    print("author is "+by)
+    return Comment(by: by, kids: kids, text: text)
   }
   
   func extractStory(_ snapshot: FDataSnapshot) -> Story {
@@ -170,6 +198,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     tableView.deselectRow(at: indexPath, animated: true)
     
     let story = stories[indexPath.row]
+    
+    if let kids = story.kids{
+      var sortedComments = [Comment]()
+      for id in kids{
+         //print("first story's comment # \(id)")
+         let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(id))
+         query?.observeSingleEvent(of: .value, with: { snapshot in
+          
+          sortedComments.append(self.extractComment(snapshot!))
+          }, withCancel: self.loadingFailed)
+      }
+      self.comments = sortedComments
+      //print("there are \(self.comments.count) in story # \(indexPath.row)")
+    }
     if let url = story.url {
       let webViewController = SFSafariViewController(url: URL(string: url)!)
       webViewController.delegate = self
