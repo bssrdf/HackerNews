@@ -15,9 +15,11 @@ class DetailTableViewController: UITableViewController {
     let FirebaseRef = "https://hacker-news.firebaseio.com/v0/"
     let ItemChildRef = "item"
     var story: Story?
-    var comments: [Comment]?
+    var comments = [Comment]()
+    var commentsMap = [Int:Comment]()
     var firebase: Firebase!
     var retrievingComments: Bool!
+    var cellHeightCache: [CGFloat] = []
     
   
   
@@ -35,7 +37,9 @@ class DetailTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
+       
         retrieveComments()
+      
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -49,11 +53,26 @@ class DetailTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-      if let comments = comments{
+      //if let comments = comments{
+      //print("# of comments is \(comments.count)")
         return comments.count
-      }
-      return 0
+      //}
+      //return 0
     }
+  
+    override func tableView(_ tableView: UITableView,
+             heightForRowAt indexPath: IndexPath) -> CGFloat {
+    
+      return self.cellHeightCache[indexPath.row] as CGFloat
+     
+   }
+   /*func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+      if (indexPath.section == 0) {
+          let title: NSString = self.post.title! as NSString
+          return NewsCell.heightForText(text: title, bounds: self.tableView.bounds)
+      }
+      return self.cellHeightCache[indexPath.row] as CGFloat
+  }*/
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,10 +81,14 @@ class DetailTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CommentTableViewCell else{
         fatalError("The dequeued cell is not an instance of CommentTableViewCell")
       }
-      if let comments = comments{
+      //if let comments = comments{
+      if comments.count > 0 {
+         //print("comments has \(comments.count)")
          let comment = comments[indexPath.row]
-         cell.authorLabel.text = comment.by
-         cell.commentTextView.text = comment.text
+        //print("cellForRowAt indexPath: for cell # \(indexPath.row)")
+        cell.comment = comment
+        //cell.authorLabel.text = comment.by+"  at level \(comment.level)"
+        // cell.commentTextView.text = comment.text
         // Configure the cell...
       }
       return cell
@@ -117,35 +140,98 @@ class DetailTableViewController: UITableViewController {
     }
     */
   
+  func cacheHeight() {
+    cellHeightCache = []
+    for comment in self.comments{
+      let height = CommentTableViewCell.heightForText(text: comment.text!, bounds: self.tableView.bounds, level: comment.level)
+      //let height = CGFloat(0.0)
+      cellHeightCache.append(height)
+    }
+  }
+  
   func extractComment(_ snapshot: FDataSnapshot) -> Comment {
     let data = snapshot.value as! Dictionary<String, Any>
     let id = data["id"] as! Int
     let by = data["by", default: "anonymous"] as! String
     let kids = data["kids"] as? [Int]
-    let text = data["text"] as? String
+    var text = ""
+    if let htmltext = data["text"] as? String {
+      text = String.stringByRemovingHTMLEntities(htmltext)
+    }
+    
     //print("author is "+by)
     return Comment(id: id, by: by, kids: kids, text: text)
   }
   
   func loadingFailed(_ error: Error?) -> Void {
     self.retrievingComments = false
-    self.comments?.removeAll()
+    self.comments.removeAll()
     self.tableView.reloadData()
     //self.showErrorMessage(self.FetchErrorMessage)
     UIApplication.shared.isNetworkActivityIndicatorVisible = false
   }
   
+  func addChildComment(_ comment: Comment, depth: Int){
+      comment.level = depth
+      self.comments.append(comment)
+      if let kids = comment.kids {
+        for id in kids {
+          /*if self.commentsMap[id] == nil{
+            print("map has \(self.commentsMap.count) comments" )
+            print("\(id) is nil and depth is \(depth)")
+          }*/
+          //let childcomment = self.commentsMap[id]!
+          if let childcomment = self.commentsMap[id] {
+            self.addChildComment(childcomment, depth: depth+1)
+          }
+        }
+    }
+    
+  }
+  
+  
   func retrieveComment(root comment: Comment) -> Void{
     
-    self.comments?.append(comment)
+    //self.comments.append(comment)
+    self.commentsMap[comment.id] = comment
+    /*if comment.id == 21541602 {
+      print("this comment exists in the map with id \(comment.id)")
+      if let ckids = comment.kids{
+         print("the kids are \(ckids)")
+      }
+    }*/
     
     if let kids = comment.kids{
        //var sortedComments = [Comment]()
        for kid in kids{
           let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(kid))
           query?.observeSingleEvent(of: .value, with: { snapshot in
+            
+            if snapshot!.value is NSNull {
+              print("nil found for id \(kid)")
+              return
+            }
            let childcomment = self.extractComment(snapshot!)
+            /*if childcomment.id == 21541859 {
+              print("this comment exists with id \(childcomment.id)")
+              if let ckids = childcomment.kids{
+                 print("the kids are \(ckids)")
+              }
+            }*/
+            //print("comment with id: \(childcomment.id)")
             self.retrieveComment(root: childcomment)
+            if self.commentsMap.count == self.story!.descendants{
+              //print("total # of comments is \(self.commentsMap.count)")
+              
+              for id in self.story!.kids! {
+                let childcomment = self.commentsMap[id]!
+                self.addChildComment(childcomment, depth: 0)
+              }
+              self.cacheHeight()
+              self.retrievingComments = false
+              self.tableView.reloadData()
+              UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
             
         }, withCancel: self.loadingFailed)
        }
@@ -158,8 +244,15 @@ class DetailTableViewController: UITableViewController {
       return
     }
     
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    retrievingComments = true
+    
     if let story = story {
-      comments?.removeAll()
+      
+      print(" story id is \(story.id)")
+      print("story title is \(story.title)")
+      comments.removeAll()
+      commentsMap.removeAll()
       if let kids = story.kids{
       
       for id in kids{
@@ -169,6 +262,18 @@ class DetailTableViewController: UITableViewController {
           let comment = self.extractComment(snapshot!)
          
           self.retrieveComment(root: comment)
+          //print("comment id is \(id) \(self.comments.count) and //\(self.commentsMap.count)")
+          if self.commentsMap.count == self.story!.descendants{
+            if self.comments.isEmpty {
+              for (_,com) in self.commentsMap {
+                self.comments.append(com)
+              }
+            }
+            self.cacheHeight()
+            self.retrievingComments = false
+            self.tableView.reloadData()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+          }
           }, withCancel: self.loadingFailed)
        }
       }

@@ -86,6 +86,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="NJa-DY-ndZ" kind="show" identifier="ShowComment" id="txf-Az-q5k"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -134,26 +137,38 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf">
-                                            <rect key="frame" x="3" y="1" width="406" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf">
+                                            <rect key="frame" x="0.0" y="9.9999999999999982" width="414" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="if8-5D-IUH">
-                                            <rect key="frame" x="2" y="22" width="409" height="98"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="if8-5D-IUH">
+                                            <rect key="frame" x="0.0" y="36.333333333333343" width="414" height="85"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="85" id="xSv-JB-YDx"/>
+                                            </constraints>
                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="if8-5D-IUH" firstAttribute="top" secondItem="s6T-TU-zGf" secondAttribute="bottom" constant="6" id="1dP-cQ-Utj" userLabel="Comment Text View.top = Author Label.bottom + 10"/>
+                                        <constraint firstItem="s6T-TU-zGf" firstAttribute="top" secondItem="87G-YK-TLL" secondAttribute="top" constant="10" id="DY9-bI-XRh"/>
+                                        <constraint firstItem="if8-5D-IUH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" id="pbt-Sd-X3F"/>
+                                        <constraint firstItem="s6T-TU-zGf" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" id="rfB-Hh-sdn"/>
+                                        <constraint firstItem="if8-5D-IUH" firstAttribute="trailing" secondItem="s6T-TU-zGf" secondAttribute="trailing" id="sSU-iI-oeA"/>
+                                        <constraint firstItem="if8-5D-IUH" firstAttribute="centerX" secondItem="87G-YK-TLL" secondAttribute="centerX" id="u2Q-RY-w3m"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorLabel" destination="s6T-TU-zGf" id="HjH-bb-bIm"/>
+                                    <outlet property="commentHeightConstrain" destination="xSv-JB-YDx" id="EOL-4t-xQ2"/>
+                                    <outlet property="commentLeftMarginConstraint" destination="pbt-Sd-X3F" id="WnU-Wy-0Rb"/>
                                     <outlet property="commentTextView" destination="if8-5D-IUH" id="4iM-WS-mfa"/>
+                                    <outlet property="usernameLeftMarginConstrain" destination="rfB-Hh-sdn" id="p1p-8W-ILT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -162,6 +177,7 @@
                             <outlet property="delegate" destination="NJa-DY-ndZ" id="nYy-pI-DuA"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="lWB-mS-anq"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RBU-n3-dZB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

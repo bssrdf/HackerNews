@@ -15,7 +15,7 @@ class Comment{
   let kids : [Int]?
   
   let text: String?
-
+  var level: Int = 0
   
   init(id: Int, by: String, kids: [Int]?, text: String?){
     self.id = id

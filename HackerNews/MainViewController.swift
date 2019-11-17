@@ -27,7 +27,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   var firebase: Firebase!
   var stories: [Story]! = []
-  var comments: [Comment]! = []
+  
   var storyType: StoryType!
   var retrievingStories: Bool!
   var refreshControl: UIRefreshControl!
@@ -110,19 +110,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
               sortedStories.append(storiesMap[storyId]!)
             }
             self.stories = sortedStories
-            let story = self.stories[0]
-            if let kids = story.kids{
-              var sortedComments = [Comment]()
-              for id in kids{
-                 //print("first story's comment # \(id)")
-                 let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(id))
-                 query?.observeSingleEvent(of: .value, with: { snapshot in
-                  
-                  sortedComments.append(self.extractComment(snapshot!))
-                  }, withCancel: self.loadingFailed)
-              }
-              self.comments = sortedComments
-            }
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
             self.retrievingStories = false
@@ -135,16 +122,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   }
   
   
-  func extractComment(_ snapshot: FDataSnapshot) -> Comment {
-    let data = snapshot.value as! Dictionary<String, Any>
-    let id = data["id"] as! Int
-    let by = data["by", default: "anonymous"] as! String
-    let kids = data["kids"] as? [Int]
-    let text = data["text"] as? String
-    //print("author is "+by)
-    return Comment(id: id, by: by, kids: kids, text: text)
-  }
-  
   func extractStory(_ snapshot: FDataSnapshot) -> Story {
     let data = snapshot.value as! Dictionary<String, Any>
     let title = data["title"] as! String
@@ -153,7 +130,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let kids = data["kids"] as? [Int]
     let score = data["score"] as! Int
     let id = data["id"] as! Int
-    let numdes = data["descendants"] as! Int
+    let numdes = data["descendants", default: 0] as! Int
     
     return Story(id:id, title: title, url: url, by: by, kids: kids, score: score, descendants: numdes)
   }
@@ -185,34 +162,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     cell.textLabel?.text = story.title
     let num_comments = story.descendants
-    //if let kids = story.kids {
-    //  num_comments = kids.count
-    //}
     cell.detailTextLabel?.text = "\(story.score) points by \(story.by) with \(num_comments) comments"
     return cell
   }
   
-  func retrieveComments(root comment: Comment) -> Void{
-    
-    self.comments.append(comment)
-    
-    if let kids = comment.kids{
-       //var sortedComments = [Comment]()
-       for kid in kids{
-          let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(kid))
-          query?.observeSingleEvent(of: .value, with: { snapshot in
-           let childcomment = self.extractComment(snapshot!)
-            self.retrieveComments(root: childcomment)
-            
-        }, withCancel: self.loadingFailed)
-       }
-    }
-    
-  }
   
   
   // MARK: UITableViewDelegate
-  
+  /*
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     
@@ -242,13 +199,40 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
       present(webViewController, animated: true, completion: nil)
     }
   }
-  
+  */
   // MARK: SFSafariViewControllerDelegate
   
-  func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+  /*func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
     controller.dismiss(animated: true, completion: nil)
-  }
+  }*/
   
+  // MARK: - Navigation
+
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+         super.prepare(for:segue, sender: sender)
+         if (segue.identifier ?? "" == "ShowComment"){
+            
+               guard let commentDetailViewController = segue.destination as? DetailTableViewController else {
+                 fatalError("Unexpected destination: \(segue.destination)")
+             }
+
+               guard let selectedStoryCell = sender as? UITableViewCell else {
+                 fatalError("Unexpected sender: \(sender)")
+             }
+
+               guard let indexPath = tableView.indexPath(for: selectedStoryCell) else {
+                 fatalError("The selected cell is not being displayed by the table")
+             }
+
+               let selectedStory = stories[indexPath.row]
+               commentDetailViewController.story = selectedStory
+           
+         }
+     }
+
   // MARK: IBActions
   
   @IBAction func changeStoryType(_ sender: UISegmentedControl) {
