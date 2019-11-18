@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3388E67D2381F8D600D5A82A /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388E67C2381F8D600D5A82A /* StoryTableViewCell.swift */; };
 		33CCC3A32378B402001A605D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CCC3A22378B402001A605D /* Comment.swift */; };
 		33CCC3A523792240001A605D /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CCC3A423792240001A605D /* Story.swift */; };
 		33CCC3AD237BB2C9001A605D /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CCC3AC237BB2C9001A605D /* CommentTableViewCell.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		0B5CABD8DC255E1769BB0358 /* Pods-HackerNewsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNewsUITests/Pods-HackerNewsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		192727F69DBDD660CDA8204C /* libPods-HackerNewsUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerNewsUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3388E67C2381F8D600D5A82A /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 		33CCC3A22378B402001A605D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		33CCC3A423792240001A605D /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		33CCC3AC237BB2C9001A605D /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				D74A035F193DA4F500F01247 /* Images.xcassets */,
 				D74A0356193DA4F500F01247 /* Supporting Files */,
 				33CCC3AC237BB2C9001A605D /* CommentTableViewCell.swift */,
+				3388E67C2381F8D600D5A82A /* StoryTableViewCell.swift */,
 			);
 			path = HackerNews;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				33CCC3A32378B402001A605D /* Comment.swift in Sources */,
 				33CCC3A523792240001A605D /* Story.swift in Sources */,
 				33CCC3B1237FC047001A605D /* HTMLString.swift in Sources */,
+				3388E67D2381F8D600D5A82A /* StoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
