@@ -37,7 +37,10 @@ class DetailTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-       
+        /*if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+           textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.orange
+           navigationController?.navigationBar.titleTextAttributes = textAttributes
+        }*/
         retrieveComments()
       
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -62,7 +65,8 @@ class DetailTableViewController: UITableViewController {
   
     override func tableView(_ tableView: UITableView,
              heightForRowAt indexPath: IndexPath) -> CGFloat {
-    
+       let comment = comments[indexPath.row]
+      //print("\(comment.by): \(self.cellHeightCache[indexPath.row])")
       return self.cellHeightCache[indexPath.row] as CGFloat
      
    }

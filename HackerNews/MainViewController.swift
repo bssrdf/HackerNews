@@ -69,6 +69,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
+    /*if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+        textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.orange
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }*/
     retrieveStories()
   }
   

@@ -9,11 +9,11 @@
 import UIKit
 
 let CommentsCellId = "commentCellId"
-let CommentCellMarginConstant: CGFloat = 8.0
+let CommentCellMarginConstant: CGFloat = 16.0
 let CommentCellTopMargin: CGFloat = 5.0
-let CommentCellFontSize: CGFloat = 13.0
+let CommentCellFontSize: CGFloat = 16.0
 let CommentCellUsernameHeight: CGFloat = 25.0
-let CommentCellBottomMargin: CGFloat = 5.0
+let CommentCellBottomMargin: CGFloat = 16.0
 
 class CommentTableViewCell: UITableViewCell {
     
@@ -85,10 +85,11 @@ class CommentTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.commentTextView.font = UIFont.systemFont(ofSize: CommentCellFontSize)
-      //self.commentTextView.textColor = UIColor.CommentLightGrayColor()
-      self.commentTextView.textColor = UIColor.black
-      /*self.commentTextView.linkTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.font.rawValue: UIFont.systemFont(ofSize: CommentCellFontSize),
-        NSAttributedString.Key.foregroundColor.rawValue: UIColor.ReadingListColor()] as [String:Any])*/
+      self.commentTextView.textColor = UIColor.CommentLightGrayColor()
+      //self.commentTextView.textColor = UIColor.black
+      
+      self.commentTextView.linkTextAttributes = [NSAttributedString.Key.font.rawValue: UIFont.systemFont(ofSize: CommentCellFontSize),
+         NSAttributedString.Key.foregroundColor.rawValue: UIColor.ReadingListColor()]
 
     }
   
@@ -122,7 +123,7 @@ class CommentTableViewCell: UITableViewCell {
                   options: NSStringDrawingOptions.usesLineFragmentOrigin,
                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CommentCellFontSize)],
               context: nil)
-          return CommentCellMarginConstant + CommentCellUsernameHeight + CommentCellTopMargin + size.height + CommentCellBottomMargin
+          return CommentCellMarginConstant + CommentCellUsernameHeight + CommentCellTopMargin + ceil(size.height) + CommentCellBottomMargin
   }
   
   // Helper function inserted by Swift 4.2 migrator.
