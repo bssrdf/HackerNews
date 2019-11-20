@@ -65,7 +65,7 @@ class DetailTableViewController: UITableViewController {
   
     override func tableView(_ tableView: UITableView,
              heightForRowAt indexPath: IndexPath) -> CGFloat {
-       let comment = comments[indexPath.row]
+       //let comment = comments[indexPath.row]
       //print("\(comment.by): \(self.cellHeightCache[indexPath.row])")
       return self.cellHeightCache[indexPath.row] as CGFloat
      
@@ -147,7 +147,7 @@ class DetailTableViewController: UITableViewController {
   func cacheHeight() {
     cellHeightCache = []
     for comment in self.comments{
-      let height = CommentTableViewCell.heightForText(text: comment.text!, bounds: self.tableView.bounds, level: comment.level)
+      let height = CommentTableViewCell.heightForText(text: comment.text!, bounds: self.tableView.bounds, level: comment.level, author: comment.by)
       //let height = CGFloat(0.0)
       cellHeightCache.append(height)
     }
@@ -162,7 +162,9 @@ class DetailTableViewController: UITableViewController {
     if let htmltext = data["text"] as? String {
       text = String.stringByRemovingHTMLEntities(htmltext)
     }
-    
+    //if text.contains("http"){
+   //   print(text)
+   // }
     //print("author is "+by)
     return Comment(id: id, by: by, kids: kids, text: text)
   }
@@ -177,6 +179,7 @@ class DetailTableViewController: UITableViewController {
   
   func addChildComment(_ comment: Comment, depth: Int){
       comment.level = depth
+      //comment.level = 0
       self.comments.append(comment)
       if let kids = comment.kids {
         for id in kids {
@@ -198,6 +201,7 @@ class DetailTableViewController: UITableViewController {
     
     //self.comments.append(comment)
     self.commentsMap[comment.id] = comment
+    //print(self.commentsMap.count)
     /*if comment.id == 21541602 {
       print("this comment exists in the map with id \(comment.id)")
       if let ckids = comment.kids{
@@ -253,20 +257,20 @@ class DetailTableViewController: UITableViewController {
     
     if let story = story {
       
-      print(" story id is \(story.id)")
-      print("story title is \(story.title)")
+      //print(" story id is \(story.id)")
+      //print("story title is \(story.title)")
       comments.removeAll()
       commentsMap.removeAll()
       if let kids = story.kids{
       
       for id in kids{
-         //print("first story's comment # \(id)")
+        // print("first story's comment # \(id)")
          let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(id))
          query?.observeSingleEvent(of: .value, with: { snapshot in
           let comment = self.extractComment(snapshot!)
          
           self.retrieveComment(root: comment)
-          //print("comment id is \(id) \(self.comments.count) and //\(self.commentsMap.count)")
+          //print("comment id is \(id) \(self.comments.count) and \(self.commentsMap.count)")
           if self.commentsMap.count == self.story!.descendants{
             if self.comments.isEmpty {
               for (_,com) in self.commentsMap {
