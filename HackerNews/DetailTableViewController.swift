@@ -153,7 +153,10 @@ class DetailTableViewController: UITableViewController {
     }
   }
   
-  func extractComment(_ snapshot: FDataSnapshot) -> Comment {
+  func extractComment(_ snapshot: FDataSnapshot) -> Comment? {
+    if snapshot.value is NSNull {
+       return nil
+    }
     let data = snapshot.value as! Dictionary<String, Any>
     let id = data["id"] as! Int
     let by = data["by", default: "anonymous"] as! String
@@ -214,12 +217,7 @@ class DetailTableViewController: UITableViewController {
        for kid in kids{
           let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(kid))
           query?.observeSingleEvent(of: .value, with: { snapshot in
-            
-            if snapshot!.value is NSNull {
-              print("nil found for id \(kid)")
-              return
-            }
-           let childcomment = self.extractComment(snapshot!)
+            if let childcomment = self.extractComment(snapshot!){
             /*if childcomment.id == 21541859 {
               print("this comment exists with id \(childcomment.id)")
               if let ckids = childcomment.kids{
@@ -227,13 +225,18 @@ class DetailTableViewController: UITableViewController {
               }
             }*/
             //print("comment with id: \(childcomment.id)")
-            self.retrieveComment(root: childcomment)
+               self.retrieveComment(root: childcomment)
+            }
             if self.commentsMap.count == self.story!.descendants{
               //print("total # of comments is \(self.commentsMap.count)")
               
               for id in self.story!.kids! {
-                let childcomment = self.commentsMap[id]!
-                self.addChildComment(childcomment, depth: 0)
+                if let childcomment = self.commentsMap[id] {
+                  self.addChildComment(childcomment, depth: 0)
+                }
+                else{
+                  print("problem id is \(id)")
+                }
               }
               self.cacheHeight()
               self.retrievingComments = false
@@ -267,9 +270,11 @@ class DetailTableViewController: UITableViewController {
         // print("first story's comment # \(id)")
          let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(id))
          query?.observeSingleEvent(of: .value, with: { snapshot in
-          let comment = self.extractComment(snapshot!)
-         
-          self.retrieveComment(root: comment)
+            
+        
+          if let comment = self.extractComment(snapshot!) {
+            self.retrieveComment(root: comment)
+          }
           //print("comment id is \(id) \(self.comments.count) and \(self.commentsMap.count)")
           if self.commentsMap.count == self.story!.descendants{
             if self.comments.isEmpty {
