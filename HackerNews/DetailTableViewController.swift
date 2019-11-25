@@ -184,6 +184,7 @@ class DetailTableViewController: UITableViewController {
       comment.level = depth
       //comment.level = 0
       self.comments.append(comment)
+      self.commentsMap.removeValue(forKey: comment.id)
       if let kids = comment.kids {
         for id in kids {
           /*if self.commentsMap[id] == nil{
@@ -228,6 +229,8 @@ class DetailTableViewController: UITableViewController {
                self.retrieveComment(root: childcomment)
             }
             if self.commentsMap.count == self.story!.descendants{
+            //if self.commentsMap.count == 50 {
+               //  self.commentsMap.count == self.story!.descendants {
               //print("total # of comments is \(self.commentsMap.count)")
               
               for id in self.story!.kids! {
@@ -239,7 +242,9 @@ class DetailTableViewController: UITableViewController {
                 }
               }
               self.cacheHeight()
+              //if self.story!.descendants < 50 {
               self.retrievingComments = false
+              //}
               self.tableView.reloadData()
               UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }

@@ -110,7 +110,8 @@ class CommentTableViewCell: UITableViewCell {
         print("layoutSubviews : \(comment.text!.count) - \(comment.level) - \(x)")
         print("layoutSubviews : \(self.contentView.bounds.width) - \(self.commentLeftMarginConstraint.constant)")
       }*/
-      self.commentTextView.frame.size.width = self.contentView.bounds.width - (self.commentLeftMarginConstraint.constant * 1) - (CommentCellMarginConstant * CGFloat(self.comment.level))
+      self.commentTextView.frame.size.width = self.contentView.bounds.width - (self.commentLeftMarginConstraint.constant * 1) -
+         (CommentCellMarginConstant * CGFloat(self.comment.level))
     
       self.indentation = CommentCellMarginConstant + (CommentCellMarginConstant * CGFloat(self.comment.level))
      /*if comment.by == user_debug{

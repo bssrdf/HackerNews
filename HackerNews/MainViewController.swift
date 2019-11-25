@@ -101,8 +101,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let query = firebase.child(byAppendingPath: StoryTypeChildRefMap[storyType]).queryLimited(toFirst: StoryLimit)
     query?.observeSingleEvent(of: .value, with: { snapshot in
-      let storyIds = snapshot?.value as! [Int]
-      
+      var storyIds = snapshot?.value as! [Int]
+      storyIds[0] = 21602437
       for storyId in storyIds {
         let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(storyId))
         query?.observeSingleEvent(of: .value, with: { snapshot in
@@ -232,6 +232,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
              }
 
                let selectedStory = stories[indexPath.row]
+                
                commentDetailViewController.story = selectedStory
            
          }

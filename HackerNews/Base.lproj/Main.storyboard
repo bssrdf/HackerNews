@@ -138,24 +138,41 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf" userLabel="Title Label">
-                                            <rect key="frame" x="6" y="10" width="408" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf" userLabel="Title Label">
+                                            <rect key="frame" x="16" y="10" width="382" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6V-dH-lPS">
-                                            <rect key="frame" x="6" y="32" width="408" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6V-dH-lPS">
+                                            <rect key="frame" x="16" y="32" width="382" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OIT-wa-PIH" userLabel="Votes Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="27" y="69" width="62" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNf-a0-U47" userLabel="Username Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
+                                            <rect key="frame" x="220" y="67.666666666666671" width="90" height="31"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="BHS-0B-THH"/>
+                                                <constraint firstAttribute="width" constant="90" id="YIm-4k-wAn"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-yt-AOG" userLabel="Comments Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
+                                            <rect key="frame" x="113" y="67.666666666666671" width="90" height="31"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="WGA-um-3pk"/>
+                                                <constraint firstAttribute="width" constant="90" id="azO-ZP-60S"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIT-wa-PIH" userLabel="Votes Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="67.666666666666671" width="80" height="31"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="Ayq-eQ-gUX"/>
+                                                <constraint firstAttribute="width" constant="80" id="sef-Cl-4ms"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                     <integer key="value" value="1"/>
@@ -169,20 +186,29 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Votes"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wNf-a0-U47" userLabel="Username Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="304" y="69" width="63" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-yt-AOG" userLabel="Comments Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="157" y="69" width="66" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="leading" secondItem="OIT-wa-PIH" secondAttribute="trailing" constant="17" id="1YT-io-fMS"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="1tO-6L-BfU"/>
+                                        <constraint firstItem="y6V-dH-lPS" firstAttribute="top" secondItem="s6T-TU-zGf" secondAttribute="bottom" constant="2" id="3qH-Ai-f5g"/>
+                                        <constraint firstItem="s6T-TU-zGf" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="6mZ-Vs-raV"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="centerY" secondItem="bm9-yt-AOG" secondAttribute="centerY" id="9ax-Zk-5sO"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="leading" secondItem="bm9-yt-AOG" secondAttribute="trailing" constant="17" id="Art-5V-umP"/>
+                                        <constraint firstAttribute="trailing" secondItem="y6V-dH-lPS" secondAttribute="trailing" constant="16" id="Jwg-2g-tFf"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="14.5" id="VMg-S5-a9l"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="centerY" secondItem="OIT-wa-PIH" secondAttribute="centerY" id="ZjA-HM-4AM"/>
+                                        <constraint firstAttribute="trailing" secondItem="s6T-TU-zGf" secondAttribute="trailing" constant="16" id="aqv-dS-Lc8"/>
+                                        <constraint firstItem="s6T-TU-zGf" firstAttribute="top" secondItem="87G-YK-TLL" secondAttribute="top" constant="10" id="d4a-7f-UBV"/>
+                                        <constraint firstItem="y6V-dH-lPS" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="dvW-9H-HcN"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorLabel" destination="s6T-TU-zGf" id="HjH-bb-bIm"/>
+                                    <outlet property="commentsLabel" destination="bm9-yt-AOG" id="UwB-92-ok4"/>
+                                    <outlet property="titleLabel" destination="s6T-TU-zGf" id="FiH-Ln-VRq"/>
+                                    <outlet property="urlLabel" destination="y6V-dH-lPS" id="Xfk-DQ-I8x"/>
+                                    <outlet property="usernameLabel" destination="wNf-a0-U47" id="VdY-WK-9Yc"/>
+                                    <outlet property="voteLabel" destination="OIT-wa-PIH" id="Jq8-SS-Bv2"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentTableViewCell" rowHeight="120" id="qre-bd-GuU" customClass="CommentTableViewCell" customModule="HackerNews" customModuleProvider="target">
@@ -193,13 +219,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4k-Xo-hyS">
-                                            <rect key="frame" x="0.0" y="9.9999999999999982" width="414" height="20.333333333333329"/>
+                                            <rect key="frame" x="16" y="15.999999999999998" width="382" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gIw-oh-YF3">
-                                            <rect key="frame" x="0.0" y="36.333333333333343" width="414" height="85"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gIw-oh-YF3">
+                                            <rect key="frame" x="16" y="42.333333333333329" width="383" height="60"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="85" id="hYR-YS-Gfb"/>
@@ -210,12 +236,12 @@
                                         </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="gIw-oh-YF3" firstAttribute="leading" secondItem="MGC-gY-wTu" secondAttribute="leading" id="9ip-4q-AuX"/>
+                                        <constraint firstItem="gIw-oh-YF3" firstAttribute="centerX" secondItem="K4k-Xo-hyS" secondAttribute="centerX" constant="0.5" id="2kO-aM-UzV"/>
+                                        <constraint firstItem="gIw-oh-YF3" firstAttribute="leading" secondItem="MGC-gY-wTu" secondAttribute="leading" constant="16" id="9ip-4q-AuX"/>
+                                        <constraint firstAttribute="trailing" secondItem="K4k-Xo-hyS" secondAttribute="trailing" constant="16" id="Gup-uQ-kkG"/>
                                         <constraint firstItem="gIw-oh-YF3" firstAttribute="top" secondItem="K4k-Xo-hyS" secondAttribute="bottom" constant="6" id="JWg-39-i8B" userLabel="Comment Text View.top = Author Label.bottom + 10"/>
-                                        <constraint firstItem="K4k-Xo-hyS" firstAttribute="top" secondItem="MGC-gY-wTu" secondAttribute="top" constant="10" id="ccy-fb-7Zq"/>
-                                        <constraint firstItem="gIw-oh-YF3" firstAttribute="centerX" secondItem="MGC-gY-wTu" secondAttribute="centerX" id="hvv-bn-fLE"/>
-                                        <constraint firstItem="gIw-oh-YF3" firstAttribute="trailing" secondItem="K4k-Xo-hyS" secondAttribute="trailing" id="no8-MG-JvN"/>
-                                        <constraint firstItem="K4k-Xo-hyS" firstAttribute="leading" secondItem="MGC-gY-wTu" secondAttribute="leading" id="vgR-gd-gLS"/>
+                                        <constraint firstItem="K4k-Xo-hyS" firstAttribute="top" secondItem="MGC-gY-wTu" secondAttribute="top" constant="16" id="ccy-fb-7Zq"/>
+                                        <constraint firstItem="K4k-Xo-hyS" firstAttribute="leading" secondItem="MGC-gY-wTu" secondAttribute="leading" constant="16" id="vgR-gd-gLS"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
