@@ -131,11 +131,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryTableViewCell" rowHeight="120" id="pdY-dN-FA8" customClass="StoryTableViewCell" customModule="HackerNews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="120"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryTableViewCell" rowHeight="90" id="pdY-dN-FA8" customClass="StoryTableViewCell" customModule="HackerNews" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pdY-dN-FA8" id="87G-YK-TLL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf" userLabel="Title Label">
@@ -157,6 +157,18 @@
                                                 <constraint firstAttribute="height" constant="31" id="BHS-0B-THH"/>
                                                 <constraint firstAttribute="width" constant="90" id="YIm-4k-wAn"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderCornerRadius">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
+                                                    <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="User"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-yt-AOG" userLabel="Comments Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
                                             <rect key="frame" x="113" y="67.666666666666671" width="90" height="31"/>
@@ -165,6 +177,9 @@
                                                 <constraint firstAttribute="height" constant="31" id="WGA-um-3pk"/>
                                                 <constraint firstAttribute="width" constant="90" id="azO-ZP-60S"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Comments"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIT-wa-PIH" userLabel="Votes Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
                                             <rect key="frame" x="16" y="67.666666666666671" width="80" height="31"/>
@@ -203,16 +218,16 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="authorLabel" destination="s6T-TU-zGf" id="HjH-bb-bIm"/>
                                     <outlet property="commentsLabel" destination="bm9-yt-AOG" id="UwB-92-ok4"/>
                                     <outlet property="titleLabel" destination="s6T-TU-zGf" id="FiH-Ln-VRq"/>
+                                    <outlet property="titleMarginConstrain" destination="6mZ-Vs-raV" id="0z9-OL-j9y"/>
                                     <outlet property="urlLabel" destination="y6V-dH-lPS" id="Xfk-DQ-I8x"/>
                                     <outlet property="usernameLabel" destination="wNf-a0-U47" id="VdY-WK-9Yc"/>
                                     <outlet property="voteLabel" destination="OIT-wa-PIH" id="Jq8-SS-Bv2"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentTableViewCell" rowHeight="120" id="qre-bd-GuU" customClass="CommentTableViewCell" customModule="HackerNews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="148" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qre-bd-GuU" id="MGC-gY-wTu">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>

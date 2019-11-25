@@ -106,6 +106,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
       for storyId in storyIds {
         let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(storyId))
         query?.observeSingleEvent(of: .value, with: { snapshot in
+           
           storiesMap[storyId] = self.extractStory(snapshot!)
           
           if storiesMap.count == Int(self.StoryLimit) {
@@ -126,7 +127,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   }
   
   
-  func extractStory(_ snapshot: FDataSnapshot) -> Story {
+  func extractStory(_ snapshot: FDataSnapshot) -> Story? {
+    if snapshot.value is NSNull {
+       return Story(id: 0, title: "", url: nil, by: "", kids: nil, score: 0, descendants: 0)
+    }
     let data = snapshot.value as! Dictionary<String, Any>
     let title = data["title"] as! String
     let url = data["url"] as? String
