@@ -207,11 +207,13 @@ class DetailTableViewController: UITableViewController,
     if let htmltext = data["text"] as? String {
       text = String.stringByRemovingHTMLEntities(htmltext)
     }
+    let time = data["time"] as! Int
+    let prettyTime = Double(time).timeIntervalAgo()
     //if text.contains("http"){
    //   print(text)
    // }
     //print("author is "+by)
-    return Comment(id: id, by: by, kids: kids, text: text)
+    return Comment(id: id, by: by, kids: kids, text: text, time: time, prettyTime: prettyTime)
   }
   
   func loadingFailed(_ error: Error?) -> Void {

@@ -39,23 +39,26 @@ class StoryTableViewCell: UITableViewCell {
             let url = URL(string: link)
             if let domain = url?.host {
             //let domain = self.extractDomainFromURL(url)
-               let commentAttributed = NSAttributedString(string: domain,
+               let input = domain + " - " + self.post.prettyTime!
+               let commentAttributed = NSAttributedString(string: input,
                                    attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: NewsCellUrlFontSize),
                                  NSAttributedString.Key.foregroundColor: UIColor.CommentLightGrayColor()])
                let attributedString = NSMutableAttributedString(attributedString: commentAttributed)
-               let nsrange = NSMakeRange(0, domain.count)
-               attributedString.setAttributes([.link: url!], range: nsrange)
+               //let nsrange = NSMakeRange(0, domain.count)
+               //attributedString.setAttributes([.link: url!], range: nsrange)
               self.urlLabel.attributedText = attributedString
               
             }
             else{
-              self.urlLabel.text = link
+              self.urlLabel.text = link+" - " + self.post.prettyTime!
               self.urlLabel.font = UIFont.systemFont(ofSize: NewsCellUrlFontSize)
               self.urlLabel.textColor = UIColor.CommentLightGrayColor()
             }
           }
           else{
-             self.urlLabel.text = ""
+             self.urlLabel.text = " - " + self.post.prettyTime!
+             self.urlLabel.font = UIFont.systemFont(ofSize: NewsCellUrlFontSize)
+             self.urlLabel.textColor = UIColor.CommentLightGrayColor()
           }
           
             //  self.urlLabel.text = self.post.domain! + " - " + date.timeAgo

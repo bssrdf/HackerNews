@@ -15,5 +15,7 @@ struct Story {
   let by: String
   let kids : [Int]?
   let score: Int
+  let time: Int?
+  let prettyTime: String?
   let descendants: Int
 }

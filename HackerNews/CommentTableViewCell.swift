@@ -21,17 +21,17 @@ class CommentTableViewCell: UITableViewCell {
     //MARK: Properties
     var comment: Comment! {
         didSet {
-          let username = comment.by+"  at level \(comment.level)"
-          //let date = " - " + comment.prettyTime!
+          let username = comment.by
+          let date = " - " + comment.prettyTime!
 
           let usernameAttributed = NSAttributedString(string: username,
                         attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: CommentCellFontSize),
                       NSAttributedString.Key.foregroundColor: UIColor.HNColor()])
-          /*let dateAttribute = NSAttributedString(string: date,
+          let dateAttribute = NSAttributedString(string: date,
                                                  attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CommentCellFontSize),
-                                                              NSAttributedString.Key.foregroundColor: UIColor.DateLighGrayColor()])*/
+                                                              NSAttributedString.Key.foregroundColor: UIColor.DateLighGrayColor()])
           let fullAttributed = NSMutableAttributedString(attributedString: usernameAttributed)
-          //fullAttributed.append(dateAttribute)
+          fullAttributed.append(dateAttribute)
 
           self.commentTextView.font = UIFont.systemFont(ofSize: CommentCellFontSize)
           self.commentTextView.textColor = UIColor.CommentLightGrayColor()
