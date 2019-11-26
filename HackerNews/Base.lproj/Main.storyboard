@@ -240,7 +240,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gIw-oh-YF3">
-                                            <rect key="frame" x="16" y="42.333333333333329" width="383" height="60"/>
+                                            <rect key="frame" x="16" y="42.333333333333329" width="383" height="26"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="85" id="hYR-YS-Gfb"/>

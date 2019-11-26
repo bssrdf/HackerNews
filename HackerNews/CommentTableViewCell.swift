@@ -14,7 +14,7 @@ let CommentCellTopMargin: CGFloat = 10.0
 let CommentCellFontSize: CGFloat = 16.0
 let CommentCellUsernameHeight: CGFloat = 25.0
 let CommentCellBottomMargin: CGFloat = 10.0
-let user_debug: String = "jawns"
+let user_debug: String = "qwerty456127"
 
 class CommentTableViewCell: UITableViewCell {
     
@@ -64,7 +64,8 @@ class CommentTableViewCell: UITableViewCell {
           self.commentLeftMarginConstraint.constant = indentation
           self.usernameLeftMarginConstrain.constant = indentation
           self.commentHeightConstrain.constant =
-              self.contentView.frame.size.height - CommentCellUsernameHeight - CommentCellTopMargin - CommentCellMarginConstant + 5.0
+              self.contentView.frame.size.height - CommentCellUsernameHeight - CommentCellTopMargin -
+                  CommentCellMarginConstant + 5.0
             
           self.contentView.setNeedsUpdateConstraints()
       }
@@ -85,6 +86,8 @@ class CommentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        //self.commentTextView.layer.borderColor = UIColor.black.cgColor
+        //self.commentTextView.layer.borderWidth = 1
         self.commentTextView.font = UIFont.systemFont(ofSize: CommentCellFontSize)
       self.commentTextView.textColor = UIColor.CommentLightGrayColor()
       self.commentTextView.linkTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: //CommentCellFontSize),
@@ -115,9 +118,9 @@ class CommentTableViewCell: UITableViewCell {
     
       self.indentation = CommentCellMarginConstant + (CommentCellMarginConstant * CGFloat(self.comment.level))
      /*if comment.by == user_debug{
-       print("layoutSubviews : \(self.commentHeightConstrain.constant)")
-      print("layoutSubviews : \(self.commentTextView.frame.size.height)")
-      print("layoutSubviews : \(self.authorLabel.frame.size.height)")
+       print("layoutSubviews const: \(self.commentHeightConstrain.constant)")
+      print("layoutSubviews size.height : \(self.commentTextView.frame.size.height)")
+      print("layoutSubviews author height: \(self.authorLabel.frame.size.height)")
      }*/
     
   }
@@ -173,6 +176,7 @@ class CommentTableViewCell: UITableViewCell {
         
         let x = CommentCellMarginConstant + CommentCellUsernameHeight + CommentCellTopMargin + ceil(size.height) + CommentCellBottomMargin
         print("class height: \(size.height) - \(x)")
+        
        }*/
     return CommentCellMarginConstant + CommentCellUsernameHeight + CommentCellTopMargin + ceil(size.height) + CommentCellBottomMargin
   }

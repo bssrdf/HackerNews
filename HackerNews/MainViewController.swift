@@ -99,10 +99,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     retrievingStories = true
     var storiesMap = [Int:Story]()
     
+    //let query = firebase.child(byAppendingPath: StoryTypeChildRefMap[storyType])?.queryStarting(atValue: <#T##Any!#>)
     let query = firebase.child(byAppendingPath: StoryTypeChildRefMap[storyType]).queryLimited(toFirst: StoryLimit)
     query?.observeSingleEvent(of: .value, with: { snapshot in
-      var storyIds = snapshot?.value as! [Int]
-      storyIds[0] = 21602437
+       let storyIds = snapshot?.value as! [Int]
+      //storyIds[0] = 21602437
       for storyId in storyIds {
         let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(storyId))
         query?.observeSingleEvent(of: .value, with: { snapshot in
