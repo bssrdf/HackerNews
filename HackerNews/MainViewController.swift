@@ -27,7 +27,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   var firebase: Firebase!
   var stories: [Story]! = []
-  
+  var page: Int = 0
   var storyType: StoryType!
   var retrievingStories: Bool!
   var refreshControl: UIRefreshControl!
@@ -82,6 +82,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     refreshControl.addTarget(self, action: #selector(MainViewController.retrieveStories), for: .valueChanged)
     refreshControl.attributedTitle = NSAttributedString(string: PullToRefreshString)
     tableView.insertSubview(refreshControl, at: 0)
+    //self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PageGuideCell")
     
     // Have to initialize this UILabel here because the view does not exist in init() yet.
     errorMessageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
@@ -162,19 +163,36 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   // MARK: UITableViewDataSource
   
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return stories.count
+  func numberOfSections(in tableView: UITableView) -> Int {
+         // #warning Incomplete implementation, return the number of sections
+    return 2
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let story = stories[indexPath.row]
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCellIdentifier) else{
-      fatalError("The dequeued cell is not an instance of UITableViewCell")
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      if section == 0 {
+        return stories.count
+      }
+      return 1
     }
-    cell.textLabel?.text = story.title
-    let num_comments = story.descendants
-    cell.detailTextLabel?.text = "\(story.score) points by \(story.by) with \(num_comments) comments"
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      if (indexPath.section == 0) {
+        let story = stories[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCellIdentifier) else{
+          fatalError("The dequeued cell is not an instance of UITableViewCell")
+        }
+        cell.textLabel?.text = story.title
+        let num_comments = story.descendants
+        cell.detailTextLabel?.text = "\(story.score) points by \(story.by) with \(num_comments) comments"
+        return cell
+    }
+    let identifier = "PageGuideCell"
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? PageGuideCell else{
+      fatalError("The dequeued cell is not an instance of PageGuideCell")
+    }
+    cell.pageNumber = page
     return cell
+    
   }
   
   

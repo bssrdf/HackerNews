@@ -91,6 +91,60 @@
                                             <segue destination="NJa-DY-ndZ" kind="show" identifier="ShowComment" id="txf-Az-q5k"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PageGuideCell" rowHeight="30" id="0oh-X3-lA4" customClass="PageGuideCell" customModule="HackerNews" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="83" width="414" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0oh-X3-lA4" id="JL6-My-s9d">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="09U-fS-hYI" userLabel="Prev Button" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
+                                                    <rect key="frame" x="50" y="5" width="107" height="20"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Prev"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
+                                                            <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="labelFontSize">
+                                                            <real key="value" value="25"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TQr-29-Rm2" userLabel="Next Button" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
+                                                    <rect key="frame" x="257" y="5" width="107" height="20"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Next"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
+                                                            <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="labelFontSize">
+                                                            <real key="value" value="25"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TQr-29-Rm2" firstAttribute="top" secondItem="JL6-My-s9d" secondAttribute="top" constant="20" id="BJs-bG-fia"/>
+                                                <constraint firstItem="TQr-29-Rm2" firstAttribute="width" secondItem="09U-fS-hYI" secondAttribute="width" id="PGm-54-s0Y"/>
+                                                <constraint firstItem="09U-fS-hYI" firstAttribute="top" secondItem="JL6-My-s9d" secondAttribute="top" constant="20" id="XjA-6b-Hiq"/>
+                                                <constraint firstAttribute="trailing" secondItem="TQr-29-Rm2" secondAttribute="trailing" constant="50" id="lpV-mW-itZ"/>
+                                                <constraint firstItem="TQr-29-Rm2" firstAttribute="leading" secondItem="09U-fS-hYI" secondAttribute="trailing" constant="100" id="mQf-di-Czc"/>
+                                                <constraint firstItem="09U-fS-hYI" firstAttribute="leading" secondItem="JL6-My-s9d" secondAttribute="leading" constant="50" id="n6b-RI-1lR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nextButton" destination="TQr-29-Rm2" id="Ea2-fU-Fzk"/>
+                                            <outlet property="prevButton" destination="09U-fS-hYI" id="b1F-h7-W0g"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="KY7-TY-Edg" id="NET-CF-vjg"/>

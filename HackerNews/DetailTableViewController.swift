@@ -39,10 +39,7 @@ class DetailTableViewController: UITableViewController,
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        /*if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
-           textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.orange
-           navigationController?.navigationBar.titleTextAttributes = textAttributes
-        }*/
+        
         retrieveComments()
       
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
