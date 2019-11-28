@@ -68,12 +68,18 @@ class BorderedButton: UIView {
   func setup() {
       self.isUserInteractionEnabled = true
       
-      self.button.addTarget(self, action: Selector(("onPress:")), for: .touchDown)
-      self.button.addTarget(self, action: Selector(("onRealPress:")), for: .touchUpInside)
-      self.button.addTarget(self, action: Selector(("onReset:")), for: .touchUpInside)
-      self.button.addTarget(self, action: Selector(("onReset:")), for: .touchUpOutside)
-      self.button.addTarget(self, action: Selector(("onReset:")), for: .touchDragExit)
-      self.button.addTarget(self, action: Selector(("onReset:")), for: .touchCancel)
+      //self.button.addTarget(self, action: Selector(("onPress:")), for: .touchDown)
+      self.button.addTarget(self, action: #selector(onPress(sender:)), for: .touchDown)
+      //self.button.addTarget(self, action: Selector(("onRealPress:")), for: .touchUpInside)
+      self.button.addTarget(self, action: #selector(onRealPress(sender:)), for: .touchUpInside)
+     //self.button.addTarget(self, action: Selector(("onReset:")), for: .touchUpInside)
+      self.button.addTarget(self, action: #selector(onReset(sender:)), for: .touchUpInside)
+      //self.button.addTarget(self, action: Selector(("onReset:")), for: .touchUpOutside)
+      self.button.addTarget(self, action: #selector(onReset(sender:)), for: .touchUpOutside)
+      //self.button.addTarget(self, action: Selector(("onReset:")), for: .touchDragExit)
+      self.button.addTarget(self, action: #selector(onReset(sender:)), for: .touchDragExit)
+      //self.button.addTarget(self, action: Selector(("onReset:")), for: .touchCancel)
+      self.button.addTarget(self, action: #selector(onReset(sender:)), for: .touchCancel)
   }
   
   // MARK: views setup
@@ -84,7 +90,7 @@ class BorderedButton: UIView {
       self.labelColor = UIColor.HNColor()
       self.borderWidth = 0.5
       self.borderCornerRadius = 5.0
-      self.labelFontSize = 11.0
+      //self.labelFontSize = 11.0
       
       self.button.frame = self.bounds
       self.button.titleLabel?.textAlignment = .center
@@ -94,21 +100,21 @@ class BorderedButton: UIView {
   }
   
   // MARK: Actions
-  func onPress(sender: AnyObject) {
+  @objc func onPress(sender: AnyObject) {
       UIView.animate(withDuration: self.animationDuration, animations: {
           self.labelColor = UIColor.white
           self.backgroundColor = UIColor.HNColor()
       })
   }
   
-  func onReset(sender: AnyObject) {
+  @objc func onReset(sender: AnyObject) {
       UIView.animate(withDuration: self.animationDuration, animations: {
           self.labelColor = UIColor.HNColor()
           self.backgroundColor = UIColor.clear
       })
   }
   
-  func onRealPress(sender: AnyObject) {
+  @objc func onRealPress(sender: AnyObject) {
       self.onButtonTouch(sender as! UIButton)
   }
   
