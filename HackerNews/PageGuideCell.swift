@@ -8,6 +8,18 @@
 
 import UIKit
 
+
+let PageGuideCellButtonFontSize: CGFloat = 16.0
+
+enum PageGuideActionType: Int{
+  case Next = 1
+  case Prev = -1
+}
+
+@objc protocol PageGuideCellDelegate{
+  func pageGuideDidSelectButton(_ cell: PageGuideCell, actionType: Int)
+}
+
 class PageGuideCell: UITableViewCell {
     
     //MARK: Properties
@@ -16,6 +28,8 @@ class PageGuideCell: UITableViewCell {
     
     @IBOutlet weak var nextButton: BorderedButton!
   
+    weak var cellDelegate: PageGuideCellDelegate?
+  
     var pageNumber: Int!{
       didSet{
         if self.pageNumber == 0 {
@@ -23,6 +37,12 @@ class PageGuideCell: UITableViewCell {
         }
         else{
           self.prevButton.isHidden = false
+        }
+        self.prevButton.onButtonTouch = {(sender: UIButton) in
+            self.selectedAction(action: .Prev)
+        }
+        self.nextButton.onButtonTouch = {(sender: UIButton) in
+            self.selectedAction(action: .Next)
         }
       }
     }
@@ -38,12 +58,21 @@ class PageGuideCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.nextButton.labelFontSize = PageGuideCellButtonFontSize
+        self.nextButton.borderWidth = 1
+      
+        self.prevButton.labelFontSize = PageGuideCellButtonFontSize
+        self.prevButton.borderWidth = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+  
+    func selectedAction(action: PageGuideActionType){
+      self.cellDelegate?.pageGuideDidSelectButton(self, actionType: action.rawValue)
     }
   
     override func layoutSubviews() {

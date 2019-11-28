@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SFSafariViewControllerDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SFSafariViewControllerDelegate, PageGuideCellDelegate {
   
   // MARK: Properties
   
@@ -191,11 +191,30 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
       fatalError("The dequeued cell is not an instance of PageGuideCell")
     }
     cell.pageNumber = page
+    cell.cellDelegate = self
     return cell
     
   }
   
+  //MARK: PageGuideCellDelegate
+  func pageGuideDidSelectButton(_ cell: PageGuideCell, actionType: Int){
+    if actionType == PageGuideActionType.Next.rawValue{
+      page += 1
+      cell.pageNumber = page
+    }
+    if actionType == PageGuideActionType.Prev.rawValue{
+      page -= 1
+      cell.pageNumber = page
+    }
+  }
   
+  func tableView(_ tableView: UITableView,
+             heightForRowAt indexPath: IndexPath) -> CGFloat {
+      if (indexPath.section == 1) {
+          return 50
+      }
+      return UITableView.automaticDimension
+  }
   
   // MARK: UITableViewDelegate
   /*

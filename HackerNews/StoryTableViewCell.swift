@@ -14,6 +14,7 @@ let NewsCellHeight: CGFloat = 100.0
 let NewsCellTitleMarginConstant: CGFloat = 16.0
 let NewsCellTitleFontSize: CGFloat = 25.0
 let NewsCellUrlFontSize: CGFloat = 16.0
+let NewsCellButtonFontSize: CGFloat = 11.0
 let NewsCellTitleDefaultHeight: CGFloat = 20.0
 
 class StoryTableViewCell: UITableViewCell {
@@ -100,6 +101,10 @@ class StoryTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+      self.voteLabel.labelFontSize = NewsCellButtonFontSize
+      self.commentsLabel.labelFontSize = NewsCellButtonFontSize
+      self.usernameLabel.labelFontSize = NewsCellButtonFontSize
+      
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
