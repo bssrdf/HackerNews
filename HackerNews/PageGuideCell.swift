@@ -32,12 +32,7 @@ class PageGuideCell: UITableViewCell {
   
     var pageNumber: Int!{
       didSet{
-        if self.pageNumber == 0 {
-          self.prevButton.isHidden = true
-        }
-        else{
-          self.prevButton.isHidden = false
-        }
+        self.prevButton.isHidden = self.pageNumber == 0
         self.prevButton.onButtonTouch = {(sender: UIButton) in
             self.selectedAction(action: .Prev)
         }
@@ -45,6 +40,12 @@ class PageGuideCell: UITableViewCell {
             self.selectedAction(action: .Next)
         }
       }
+    }
+  
+    var lastPage: Bool!{
+        didSet {
+            self.nextButton.isHidden = lastPage
+        }
     }
   
     required init?(coder aDecoder: NSCoder) { // required for Xcode6-Beta5

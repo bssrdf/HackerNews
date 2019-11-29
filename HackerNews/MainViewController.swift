@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 
+
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SFSafariViewControllerDelegate, PageGuideCellDelegate {
   
   // MARK: Properties
@@ -32,7 +33,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   var retrievingStories: Bool!
   var refreshControl: UIRefreshControl!
   var errorMessageLabel: UILabel!
-  
+  var storyLimitByCategory: [StoryType:Int]!
+  var storyIdsByCategory: [StoryType:[Int]]!
+  var lastPage = false
   @IBOutlet weak var tableView: UITableView!
   
   // MARK: Enums
@@ -59,6 +62,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     super.init(coder: aDecoder)
     firebase = Firebase(url: FirebaseRef)
     stories = []
+    storyLimitByCategory = [.top : 500, .new : 500, .show: 200, .ask: 200]
+    storyIdsByCategory = [.top : [], .new : [], .show: [], .ask: []]
     storyType = DefaultStoryType
     retrievingStories = false
     refreshControl = UIRefreshControl()
@@ -69,10 +74,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
-    /*if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
-        textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.orange
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }*/
+    page = 0
+    lastPage = false
     retrieveStories()
   }
   
@@ -82,13 +85,62 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     refreshControl.addTarget(self, action: #selector(MainViewController.retrieveStories), for: .valueChanged)
     refreshControl.attributedTitle = NSAttributedString(string: PullToRefreshString)
     tableView.insertSubview(refreshControl, at: 0)
-    //self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PageGuideCell")
+    
     
     // Have to initialize this UILabel here because the view does not exist in init() yet.
     errorMessageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
     errorMessageLabel.textColor = ErrorMessageLabelTextColor
     errorMessageLabel.textAlignment = .center
     errorMessageLabel.font = UIFont.systemFont(ofSize: ErrorMessageFontSize)
+  }
+  
+  
+  @objc func retrieveStoriesByPage(direction: Int) {
+    if retrievingStories! {
+      return
+    }
+    
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    retrievingStories = true
+    var storiesMap = [Int:Story]()
+    let storyIds = self.storyIdsByCategory[self.storyType]!
+    let sp = Int(self.StoryLimit)
+    let startIdIdx = self.page*sp
+    var endIdIdx = (self.page+1)*sp
+    if endIdIdx > storyIds.count {
+       endIdIdx = storyIds.count
+       lastPage = true
+    }
+    else{
+       lastPage = false
+    }
+    
+    let storySlice = storyIds[startIdIdx..<endIdIdx]
+    let storyPage = Array(storySlice)
+    for storyId in storyPage{
+        let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(storyId))
+            query?.observeSingleEvent(of: .value, with: { snapshot in
+           
+          storiesMap[storyId] = self.extractStory(snapshot!)
+              
+          if storiesMap.count == (endIdIdx - startIdIdx) {
+            var sortedStories = [Story]()
+            for storyId in storyPage {
+              sortedStories.append(storiesMap[storyId]!)
+            }
+            self.stories = sortedStories
+            self.tableView.reloadData()
+            // scrollToRow call must be run by the main thread;
+            // otherwise scroll stops in the middle somewhere
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
+              self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)})
+            self.refreshControl.endRefreshing()
+            self.retrievingStories = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+          }
+          }, withCancel: self.loadingFailed)
+    }
+  
   }
   
   @objc func retrieveStories() {
@@ -100,20 +152,27 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     retrievingStories = true
     var storiesMap = [Int:Story]()
     
-    //let query = firebase.child(byAppendingPath: StoryTypeChildRefMap[storyType])?.queryStarting(atValue: <#T##Any!#>)
-    let query = firebase.child(byAppendingPath: StoryTypeChildRefMap[storyType]).queryLimited(toFirst: StoryLimit)
+   
+    let query = firebase.child(byAppendingPath: StoryTypeChildRefMap[storyType]).queryLimited(toFirst: UInt(storyLimitByCategory[storyType]!))
+    
     query?.observeSingleEvent(of: .value, with: { snapshot in
        let storyIds = snapshot?.value as! [Int]
+     // print("storytype is \(self.storyType) with \(storyIds.count) stories")
       //storyIds[0] = 21602437
-      for storyId in storyIds {
-        let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(storyId))
+       self.storyIdsByCategory[self.storyType] = storyIds
+       
+       let storySlice = storyIds[0..<Int(self.StoryLimit)]
+       let storyPage = Array(storySlice)
+       for storyId in storyPage {
+         let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(storyId))
         query?.observeSingleEvent(of: .value, with: { snapshot in
            
           storiesMap[storyId] = self.extractStory(snapshot!)
           
           if storiesMap.count == Int(self.StoryLimit) {
             var sortedStories = [Story]()
-            for storyId in storyIds {
+            //for storyId in storyIds {
+            for storyId in storyPage{
               sortedStories.append(storiesMap[storyId]!)
             }
             self.stories = sortedStories
@@ -191,6 +250,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
       fatalError("The dequeued cell is not an instance of PageGuideCell")
     }
     cell.pageNumber = page
+    cell.lastPage = lastPage
     cell.cellDelegate = self
     return cell
     
@@ -201,20 +261,26 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     if actionType == PageGuideActionType.Next.rawValue{
       page += 1
       cell.pageNumber = page
+      
+      self.retrieveStoriesByPage(direction: actionType)
     }
     if actionType == PageGuideActionType.Prev.rawValue{
       page -= 1
       cell.pageNumber = page
+      
+      self.retrieveStoriesByPage(direction: actionType)
     }
+    cell.lastPage = lastPage
+    
   }
   
-  func tableView(_ tableView: UITableView,
+  /*func tableView(_ tableView: UITableView,
              heightForRowAt indexPath: IndexPath) -> CGFloat {
       if (indexPath.section == 1) {
           return 50
       }
       return UITableView.automaticDimension
-  }
+  }*/
   
   // MARK: UITableViewDelegate
   /*
@@ -297,7 +363,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     else {
       print("Bad segment index!")
     }
-    
+    page = 0
+    lastPage = false
     retrieveStories()
   }
 }
