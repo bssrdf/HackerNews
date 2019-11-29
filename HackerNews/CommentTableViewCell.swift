@@ -14,7 +14,10 @@ let CommentCellTopMargin: CGFloat = 10.0
 let CommentCellFontSize: CGFloat = 16.0
 let CommentCellUsernameHeight: CGFloat = 25.0
 let CommentCellBottomMargin: CGFloat = 10.0
-let user_debug: String = "qwerty456127"
+//let user_debug: String = "qwerty456127"
+//let user_debug: String = "powerapple"
+//let user_debug: String = "tdsamardzhiev"
+
 
 class CommentTableViewCell: UITableViewCell {
     
@@ -33,8 +36,8 @@ class CommentTableViewCell: UITableViewCell {
           let fullAttributed = NSMutableAttributedString(attributedString: usernameAttributed)
           fullAttributed.append(dateAttribute)
 
-          self.commentTextView.font = UIFont.systemFont(ofSize: CommentCellFontSize)
-          self.commentTextView.textColor = UIColor.CommentLightGrayColor()
+          //self.commentTextView.font = UIFont.systemFont(ofSize: CommentCellFontSize)
+          //self.commentTextView.textColor = UIColor.CommentLightGrayColor()
 
           self.authorLabel.attributedText = fullAttributed
           self.commentTextView.attributedText = self.URLAttributedText(input: comment.text!)
@@ -170,13 +173,16 @@ class CommentTableViewCell: UITableViewCell {
                       height: CGFloat.greatestFiniteMagnitude),
                   //options: NSStringDrawingOptions.usesLineFragmentOrigin,
             options: [.usesLineFragmentOrigin, .usesFontLeading],
-                  attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CommentCellFontSize)],
+                  attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CommentCellFontSize)
+                       ],
               context: nil)
-       /*if author == user_debug {
+      /* if author == user_debug {
         
         let x = CommentCellMarginConstant + CommentCellUsernameHeight + CommentCellTopMargin + ceil(size.height) + CommentCellBottomMargin
         print("class height: \(size.height) - \(x)")
-        
+        let y = bounds.width - (CommentCellMarginConstant * 1) -
+              (CommentCellMarginConstant * CGFloat(level))
+        print("class height: \(bounds.width) - \(y)")
        }*/
     return CommentCellMarginConstant + CommentCellUsernameHeight + CommentCellTopMargin + ceil(size.height) + CommentCellBottomMargin
   }
