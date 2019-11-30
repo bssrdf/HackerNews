@@ -190,11 +190,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   func extractStory(_ snapshot: FDataSnapshot) -> Story? {
     if snapshot.value is NSNull {
-      return Story(id: 0, title: "", url: nil, by: "", kids: nil, score: 0, time: 0, prettyTime: "", descendants: 0)
+      return Story(id: 0, title: "", url: nil, by: "", text: nil, kids: nil, score: 0, time: 0, prettyTime: "", descendants: 0)
     }
     let data = snapshot.value as! Dictionary<String, Any>
     let title = data["title"] as! String
     let url = data["url"] as? String
+    let text = data["text"] as? String
     let by = data["by"] as! String
     let kids = data["kids"] as? [Int]
     let score = data["score"] as! Int
@@ -203,7 +204,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let prettyTime = Double(time).timeIntervalAgo()
     let numdes = data["descendants", default: 0] as! Int
     
-    return Story(id:id, title: title, url: url, by: by, kids: kids, score: score, time: time, prettyTime: prettyTime, descendants: numdes)
+    return Story(id:id, title: title, url: url, by: by, text: text, kids: kids, score: score, time: time, prettyTime: prettyTime, descendants: numdes)
   }
   
   func loadingFailed(_ error: Error?) -> Void {

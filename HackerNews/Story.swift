@@ -13,6 +13,7 @@ struct Story {
   let title: String
   let url: String?
   let by: String
+  let text: String?
   let kids : [Int]?
   let score: Int
   let time: Int?
