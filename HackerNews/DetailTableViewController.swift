@@ -41,7 +41,8 @@ class DetailTableViewController: UITableViewController,
 
         
         retrieveComments()
-      
+      tableView.rowHeight = UITableView.automaticDimension
+      tableView.estimatedRowHeight = 600
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -50,14 +51,14 @@ class DetailTableViewController: UITableViewController,
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       
-      if section == 0 {
+     /* if section == 0 {
         return 1
-      }
+      }*/
         // #warning Incomplete implementation, return the number of rows
       //if let comments = comments{
       //print("# of comments is \(comments.count)")
@@ -66,7 +67,7 @@ class DetailTableViewController: UITableViewController,
       //return 0
     }
   
-    override func tableView(_ tableView: UITableView,
+    /*override func tableView(_ tableView: UITableView,
              heightForRowAt indexPath: IndexPath) -> CGFloat {
       if (indexPath.section == 0) {
           let title: NSString = self.story!.title as NSString
@@ -76,7 +77,7 @@ class DetailTableViewController: UITableViewController,
       //print("\(comment.by): \(self.cellHeightCache[indexPath.row])")
       return self.cellHeightCache[indexPath.row] as CGFloat
      
-   }
+   }*/
    /*func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if (indexPath.section == 0) {
           let title: NSString = self.post.title! as NSString
@@ -87,7 +88,7 @@ class DetailTableViewController: UITableViewController,
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.section == 0) {
+       /* if (indexPath.section == 0) {
           let cellIdentifier = "StoryTableViewCell"
           guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? StoryTableViewCell else{
             fatalError("The dequeued cell is not an instance of StoryTableViewCell")
@@ -95,7 +96,7 @@ class DetailTableViewController: UITableViewController,
             cell.post = self.story
             //cell!.cellDelegate = self;
             return cell
-        }
+        }*/
       
         let cellIdentifier = "CommentTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CommentTableViewCell else{
@@ -116,7 +117,7 @@ class DetailTableViewController: UITableViewController,
   
   // MARK: UITableViewDelegate
   
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if (indexPath.section == 0) {
       tableView.deselectRow(at: indexPath, animated: true)
       
@@ -129,7 +130,7 @@ class DetailTableViewController: UITableViewController,
         present(webViewController, animated: true, completion: nil)
       }
     }
-  }
+  }*/
   
   // MARK: SFSafariViewControllerDelegate
   
