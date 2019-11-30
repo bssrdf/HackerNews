@@ -121,7 +121,7 @@ class DetailTableViewController: UITableViewController,
   
   // MARK: UITableViewDelegate
   
-  /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if (indexPath.section == 0) {
       tableView.deselectRow(at: indexPath, animated: true)
       
@@ -134,7 +134,7 @@ class DetailTableViewController: UITableViewController,
         present(webViewController, animated: true, completion: nil)
       }
     }
-  }*/
+  }
   
   // MARK: SFSafariViewControllerDelegate
   
