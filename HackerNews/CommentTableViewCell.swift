@@ -36,14 +36,29 @@ class CommentTableViewCell: UITableViewCell {
           let indentation = CommentCellMarginConstant + (CommentCellMarginConstant * CGFloat(self.comment.level))
           self.usernameLeftMarginContraint.constant = indentation
           self.commentLeftMarginContraint.constant = indentation
-          
-
           self.authorLabel.attributedText = fullAttributed
-          self.commentTextView.attributedText = self.URLAttributedText(input: comment.text!)
-          self.commentTextView.linkTextAttributes = [NSAttributedString.Key.font: //UIFont.systemFont(ofSize: CommentCellFontSize),
-            UIFont.systemFont(ofSize: 25),
-          NSAttributedString.Key.foregroundColor: UIColor.ReadingListColor()]
           
+          
+          // below showed the trick get the link shown in blue color
+          // without underline and the same fontsize as the other text
+          // from SO: https://stackoverflow.com/a/50420658
+          // we need to create a copy of original AttributedString
+          // and remove font attribute then add a new one
+          let oldString = self.URLAttributedText(input: comment.text!)
+          let newString = NSMutableAttributedString(attributedString: oldString)
+          oldString.enumerateAttributes(in: NSRange(0..<oldString.length), options: .reverse) { (attributes, range, pointer) in
+              if let _ = attributes[NSAttributedString.Key.link] {
+                  newString.removeAttribute(NSAttributedString.Key.font, range: range)
+              newString.removeAttribute(NSAttributedString.Key.foregroundColor, range: range)
+                  newString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: CommentCellFontSize), range: range)
+                newString.addAttribute(NSAttributedString.Key
+                  .foregroundColor, value: UIColor.ReadingListColor(),
+                     range: range)
+              }
+          }
+          self.commentTextView.attributedText = newString
+          self.commentTextView.linkTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CommentCellFontSize),
+            NSAttributedString.Key.foregroundColor: UIColor.ReadingListColor()]
       }
   }
 
@@ -57,7 +72,6 @@ class CommentTableViewCell: UITableViewCell {
     
     // These constraints are used to indent deeper level comments
     @IBOutlet weak var usernameLeftMarginContraint: NSLayoutConstraint!
-  
     @IBOutlet weak var commentLeftMarginContraint: NSLayoutConstraint!
     
   
