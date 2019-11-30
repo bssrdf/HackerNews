@@ -51,9 +51,11 @@ class CommentTableViewCell: UITableViewCell {
     
     //@IBOutlet weak var authorLabel: UILabel!
     
+    // The key to get Auto Layout working on a UITableViewCell is to ensure that you have constraints to pin each subview on all sides — that is, each subview should have leading, top, trailing and bottom constraints. Then, the intrinsic height of the subviews will be used to dictate the height of each cell.
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var commentTextView: UITextView!
     
+    // These constraints are used to indent deeper level comments
     @IBOutlet weak var usernameLeftMarginContraint: NSLayoutConstraint!
   
     @IBOutlet weak var commentLeftMarginContraint: NSLayoutConstraint!

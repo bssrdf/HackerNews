@@ -211,12 +211,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNf-a0-U47" userLabel="Username Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="220" y="67.666666666666671" width="90" height="31"/>
+                                            <rect key="frame" x="279.33333333333331" y="63" width="84.666666666666686" height="17"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="31" id="BHS-0B-THH"/>
-                                                <constraint firstAttribute="width" constant="90" id="YIm-4k-wAn"/>
-                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                     <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -230,24 +226,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="User"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-yt-AOG" userLabel="Comments Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="113" y="67.666666666666671" width="90" height="31"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="31" id="WGA-um-3pk"/>
-                                                <constraint firstAttribute="width" constant="90" id="azO-ZP-60S"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Comments"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIT-wa-PIH" userLabel="Votes Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="67.666666666666671" width="80" height="31"/>
+                                            <rect key="frame" x="50.000000000000007" y="63" width="84.666666666666686" height="17"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="31" id="Ayq-eQ-gUX"/>
-                                                <constraint firstAttribute="width" constant="80" id="sef-Cl-4ms"/>
-                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                     <integer key="value" value="1"/>
@@ -261,26 +242,38 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Votes"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-yt-AOG" userLabel="Comments Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
+                                            <rect key="frame" x="164.66666666666666" y="63" width="84.666666666666657" height="17"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Comments"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="leading" secondItem="OIT-wa-PIH" secondAttribute="trailing" constant="17" id="1YT-io-fMS"/>
-                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="1tO-6L-BfU"/>
                                         <constraint firstItem="y6V-dH-lPS" firstAttribute="top" secondItem="s6T-TU-zGf" secondAttribute="bottom" constant="2" id="3qH-Ai-f5g"/>
                                         <constraint firstItem="s6T-TU-zGf" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="6mZ-Vs-raV"/>
-                                        <constraint firstItem="wNf-a0-U47" firstAttribute="centerY" secondItem="bm9-yt-AOG" secondAttribute="centerY" id="9ax-Zk-5sO"/>
-                                        <constraint firstItem="wNf-a0-U47" firstAttribute="leading" secondItem="bm9-yt-AOG" secondAttribute="trailing" constant="17" id="Art-5V-umP"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="ADt-vF-kJ0"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="leading" secondItem="bm9-yt-AOG" secondAttribute="trailing" constant="30" id="Cp9-mP-XcV"/>
+                                        <constraint firstAttribute="bottom" secondItem="OIT-wa-PIH" secondAttribute="bottom" constant="10" id="IAl-sV-F0q"/>
                                         <constraint firstAttribute="trailing" secondItem="y6V-dH-lPS" secondAttribute="trailing" constant="16" id="Jwg-2g-tFf"/>
-                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="14.5" id="VMg-S5-a9l"/>
-                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="centerY" secondItem="OIT-wa-PIH" secondAttribute="centerY" id="ZjA-HM-4AM"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="RiF-xh-4xt"/>
                                         <constraint firstAttribute="trailing" secondItem="s6T-TU-zGf" secondAttribute="trailing" constant="16" id="aqv-dS-Lc8"/>
                                         <constraint firstItem="s6T-TU-zGf" firstAttribute="top" secondItem="87G-YK-TLL" secondAttribute="top" constant="10" id="d4a-7f-UBV"/>
+                                        <constraint firstAttribute="trailing" secondItem="wNf-a0-U47" secondAttribute="trailing" constant="50" id="dEj-FE-pP6"/>
                                         <constraint firstItem="y6V-dH-lPS" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="dvW-9H-HcN"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="50" id="eXl-q6-45E"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="width" secondItem="bm9-yt-AOG" secondAttribute="width" id="gXg-TB-0ad"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="goo-pf-afM"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="width" secondItem="OIT-wa-PIH" secondAttribute="width" id="jhp-qD-OVH"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="leading" secondItem="OIT-wa-PIH" secondAttribute="trailing" constant="30" id="onq-xD-07n"/>
+                                        <constraint firstAttribute="bottom" secondItem="bm9-yt-AOG" secondAttribute="bottom" constant="10" id="toh-yz-FXD"/>
+                                        <constraint firstAttribute="bottom" secondItem="wNf-a0-U47" secondAttribute="bottom" constant="10" id="ycb-Kc-HCI"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentsLabel" destination="bm9-yt-AOG" id="UwB-92-ok4"/>
                                     <outlet property="titleLabel" destination="s6T-TU-zGf" id="FiH-Ln-VRq"/>
-                                    <outlet property="titleMarginConstrain" destination="6mZ-Vs-raV" id="0z9-OL-j9y"/>
                                     <outlet property="urlLabel" destination="y6V-dH-lPS" id="Xfk-DQ-I8x"/>
                                     <outlet property="usernameLabel" destination="wNf-a0-U47" id="VdY-WK-9Yc"/>
                                     <outlet property="voteLabel" destination="OIT-wa-PIH" id="Jq8-SS-Bv2"/>

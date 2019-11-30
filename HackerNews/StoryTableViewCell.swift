@@ -27,7 +27,7 @@ class StoryTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: BorderedButton!
     @IBOutlet weak var usernameLabel: BorderedButton!
     
-    @IBOutlet weak var titleMarginConstrain: NSLayoutConstraint!
+    
     
   var post: Story! {
       didSet{
@@ -88,7 +88,7 @@ class StoryTableViewCell: UITableViewCell {
       }
   }
   
-  required init?(coder aDecoder: NSCoder) { // required for Xcode6-Beta5
+  /*required init?(coder aDecoder: NSCoder) { // required for Xcode6-Beta5
       super.init(coder: aDecoder)
   }
 
@@ -118,7 +118,7 @@ class StoryTableViewCell: UITableViewCell {
 
       self.titleLabel.preferredMaxLayoutWidth = self.contentView.bounds.width - (self.titleMarginConstrain.constant * 2)
   }
-
+*/
 
   class func heightForText(text: NSString, bounds: CGRect) -> CGFloat {
       let size = text.boundingRect(with: CGSize(width: bounds.width - (NewsCellTitleMarginConstant * 2), height: CGFloat.greatestFiniteMagnitude),
