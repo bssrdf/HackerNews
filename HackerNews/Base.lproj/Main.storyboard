@@ -191,27 +191,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryTableViewCell" rowHeight="90" id="pdY-dN-FA8" customClass="StoryTableViewCell" customModule="HackerNews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoryTableViewCell" rowHeight="150" id="pdY-dN-FA8" customClass="StoryTableViewCell" customModule="HackerNews" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pdY-dN-FA8" id="87G-YK-TLL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf" userLabel="Title Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf" userLabel="Title Label">
                                             <rect key="frame" x="16" y="10" width="382" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6V-dH-lPS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6V-dH-lPS">
                                             <rect key="frame" x="16" y="32" width="382" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNf-a0-U47" userLabel="Username Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="292.66666666666669" y="49" width="111.33333333333331" height="31"/>
+                                            <rect key="frame" x="292.66666666666669" y="63" width="111.33333333333331" height="46.666666666666657"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -227,11 +227,8 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIT-wa-PIH" userLabel="Votes Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="9.9999999999999929" y="49" width="111.33333333333331" height="31"/>
+                                            <rect key="frame" x="9.9999999999999929" y="63" width="111.33333333333331" height="46.666666666666657"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="31" id="duP-Io-q5L"/>
-                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                     <integer key="value" value="1"/>
@@ -245,8 +242,14 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Votes"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MiL-Nr-oiQ">
+                                            <rect key="frame" x="16" y="119.66666666666667" width="382" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-yt-AOG" userLabel="Comments Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="151.33333333333334" y="49" width="111.33333333333334" height="31"/>
+                                            <rect key="frame" x="151.33333333333334" y="63" width="111.33333333333334" height="46.666666666666657"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Comments"/>
@@ -255,29 +258,31 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="y6V-dH-lPS" firstAttribute="top" secondItem="s6T-TU-zGf" secondAttribute="bottom" constant="2" id="3qH-Ai-f5g"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="width" secondItem="wNf-a0-U47" secondAttribute="width" id="5SC-bX-Ult"/>
                                         <constraint firstItem="s6T-TU-zGf" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="6mZ-Vs-raV"/>
-                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="ADt-vF-kJ0"/>
-                                        <constraint firstItem="wNf-a0-U47" firstAttribute="leading" secondItem="bm9-yt-AOG" secondAttribute="trailing" constant="30" id="Cp9-mP-XcV"/>
-                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="height" secondItem="wNf-a0-U47" secondAttribute="height" id="H4L-T0-sOp"/>
-                                        <constraint firstAttribute="bottom" secondItem="OIT-wa-PIH" secondAttribute="bottom" constant="10" id="IAl-sV-F0q"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="AMZ-xy-03S"/>
+                                        <constraint firstItem="MiL-Nr-oiQ" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="BX4-wi-HB7"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="width" secondItem="wNf-a0-U47" secondAttribute="width" id="HCW-G1-JyI"/>
                                         <constraint firstAttribute="trailing" secondItem="y6V-dH-lPS" secondAttribute="trailing" constant="16" id="Jwg-2g-tFf"/>
-                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="RiF-xh-4xt"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="10" id="M2C-Kr-TZe"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="height" secondItem="wNf-a0-U47" secondAttribute="height" id="OZF-Kd-AbQ"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="height" secondItem="wNf-a0-U47" secondAttribute="height" id="U2V-39-t8d"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="leading" secondItem="OIT-wa-PIH" secondAttribute="trailing" constant="30" id="XvD-v4-Lpz"/>
                                         <constraint firstAttribute="trailing" secondItem="s6T-TU-zGf" secondAttribute="trailing" constant="16" id="aqv-dS-Lc8"/>
                                         <constraint firstItem="s6T-TU-zGf" firstAttribute="top" secondItem="87G-YK-TLL" secondAttribute="top" constant="10" id="d4a-7f-UBV"/>
-                                        <constraint firstAttribute="trailing" secondItem="wNf-a0-U47" secondAttribute="trailing" constant="10" id="dEj-FE-pP6"/>
                                         <constraint firstItem="y6V-dH-lPS" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="dvW-9H-HcN"/>
-                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="10" id="eXl-q6-45E"/>
-                                        <constraint firstItem="wNf-a0-U47" firstAttribute="width" secondItem="bm9-yt-AOG" secondAttribute="width" id="gXg-TB-0ad"/>
-                                        <constraint firstItem="wNf-a0-U47" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="goo-pf-afM"/>
-                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="width" secondItem="OIT-wa-PIH" secondAttribute="width" id="jhp-qD-OVH"/>
-                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="leading" secondItem="OIT-wa-PIH" secondAttribute="trailing" constant="30" id="onq-xD-07n"/>
-                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="height" secondItem="bm9-yt-AOG" secondAttribute="height" id="t7p-QF-C07"/>
-                                        <constraint firstAttribute="bottom" secondItem="bm9-yt-AOG" secondAttribute="bottom" constant="10" id="toh-yz-FXD"/>
-                                        <constraint firstAttribute="bottom" secondItem="wNf-a0-U47" secondAttribute="bottom" constant="10" id="ycb-Kc-HCI"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="centerY" secondItem="wNf-a0-U47" secondAttribute="centerY" id="fLo-sQ-HPG"/>
+                                        <constraint firstAttribute="trailing" secondItem="MiL-Nr-oiQ" secondAttribute="trailing" constant="16" id="hDY-vM-S0a"/>
+                                        <constraint firstItem="MiL-Nr-oiQ" firstAttribute="top" secondItem="wNf-a0-U47" secondAttribute="bottom" constant="10" id="iBa-71-y5c"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="centerY" secondItem="wNf-a0-U47" secondAttribute="centerY" id="mZv-Df-JwT"/>
+                                        <constraint firstAttribute="bottom" secondItem="MiL-Nr-oiQ" secondAttribute="bottom" constant="10" id="msw-EH-wCl"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="leading" secondItem="bm9-yt-AOG" secondAttribute="trailing" constant="30" id="pBn-xA-e8C"/>
+                                        <constraint firstAttribute="trailing" secondItem="wNf-a0-U47" secondAttribute="trailing" constant="10" id="vo6-Zd-Jcn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentsLabel" destination="bm9-yt-AOG" id="UwB-92-ok4"/>
+                                    <outlet property="storyLabel" destination="MiL-Nr-oiQ" id="jK8-Zr-mnw"/>
                                     <outlet property="titleLabel" destination="s6T-TU-zGf" id="FiH-Ln-VRq"/>
                                     <outlet property="urlLabel" destination="y6V-dH-lPS" id="Xfk-DQ-I8x"/>
                                     <outlet property="usernameLabel" destination="wNf-a0-U47" id="VdY-WK-9Yc"/>
@@ -285,7 +290,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentTableViewCell" id="qre-bd-GuU" customClass="CommentTableViewCell" customModule="HackerNews" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="118" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="178" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qre-bd-GuU" id="MGC-gY-wTu">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>

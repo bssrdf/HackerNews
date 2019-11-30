@@ -26,8 +26,7 @@ class StoryTableViewCell: UITableViewCell {
     @IBOutlet weak var voteLabel: BorderedButton!
     @IBOutlet weak var commentsLabel: BorderedButton!
     @IBOutlet weak var usernameLabel: BorderedButton!
-    
-    
+    @IBOutlet weak var storyLabel: UILabel!
     
   var post: Story! {
       didSet{
@@ -70,6 +69,15 @@ class StoryTableViewCell: UITableViewCell {
           self.voteLabel.labelText = String(self.post.score) + " votes"
           self.commentsLabel.labelText = String(self.post.descendants) + " comments"
           self.usernameLabel.labelText = self.post.by
+        
+          self.storyLabel.numberOfLines = 0
+          if let input = self.post.text {
+            self.storyLabel.text = input
+          }
+          else{
+            self.storyLabel.text = ""
+            self.storyLabel.isHidden = true
+          }
 
           /*self.voteLabel.onButtonTouch = {(sender: UIButton) in
               self.selectedAction(action: .Vote)
