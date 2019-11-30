@@ -198,20 +198,20 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf" userLabel="Title Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6T-TU-zGf" userLabel="Title Label">
                                             <rect key="frame" x="16" y="10" width="382" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6V-dH-lPS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6V-dH-lPS">
                                             <rect key="frame" x="16" y="32" width="382" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNf-a0-U47" userLabel="Username Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="279.33333333333331" y="63" width="84.666666666666686" height="17"/>
+                                            <rect key="frame" x="292.66666666666669" y="49" width="111.33333333333331" height="31"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -227,8 +227,11 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIT-wa-PIH" userLabel="Votes Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="50.000000000000007" y="63" width="84.666666666666686" height="17"/>
+                                            <rect key="frame" x="9.9999999999999929" y="49" width="111.33333333333331" height="31"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="duP-Io-q5L"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                     <integer key="value" value="1"/>
@@ -243,7 +246,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-yt-AOG" userLabel="Comments Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="164.66666666666666" y="63" width="84.666666666666657" height="17"/>
+                                            <rect key="frame" x="151.33333333333334" y="49" width="111.33333333333334" height="31"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Comments"/>
@@ -255,18 +258,20 @@
                                         <constraint firstItem="s6T-TU-zGf" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="6mZ-Vs-raV"/>
                                         <constraint firstItem="bm9-yt-AOG" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="ADt-vF-kJ0"/>
                                         <constraint firstItem="wNf-a0-U47" firstAttribute="leading" secondItem="bm9-yt-AOG" secondAttribute="trailing" constant="30" id="Cp9-mP-XcV"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="height" secondItem="wNf-a0-U47" secondAttribute="height" id="H4L-T0-sOp"/>
                                         <constraint firstAttribute="bottom" secondItem="OIT-wa-PIH" secondAttribute="bottom" constant="10" id="IAl-sV-F0q"/>
                                         <constraint firstAttribute="trailing" secondItem="y6V-dH-lPS" secondAttribute="trailing" constant="16" id="Jwg-2g-tFf"/>
                                         <constraint firstItem="OIT-wa-PIH" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="RiF-xh-4xt"/>
                                         <constraint firstAttribute="trailing" secondItem="s6T-TU-zGf" secondAttribute="trailing" constant="16" id="aqv-dS-Lc8"/>
                                         <constraint firstItem="s6T-TU-zGf" firstAttribute="top" secondItem="87G-YK-TLL" secondAttribute="top" constant="10" id="d4a-7f-UBV"/>
-                                        <constraint firstAttribute="trailing" secondItem="wNf-a0-U47" secondAttribute="trailing" constant="50" id="dEj-FE-pP6"/>
+                                        <constraint firstAttribute="trailing" secondItem="wNf-a0-U47" secondAttribute="trailing" constant="10" id="dEj-FE-pP6"/>
                                         <constraint firstItem="y6V-dH-lPS" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="dvW-9H-HcN"/>
-                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="50" id="eXl-q6-45E"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="10" id="eXl-q6-45E"/>
                                         <constraint firstItem="wNf-a0-U47" firstAttribute="width" secondItem="bm9-yt-AOG" secondAttribute="width" id="gXg-TB-0ad"/>
                                         <constraint firstItem="wNf-a0-U47" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="goo-pf-afM"/>
                                         <constraint firstItem="bm9-yt-AOG" firstAttribute="width" secondItem="OIT-wa-PIH" secondAttribute="width" id="jhp-qD-OVH"/>
                                         <constraint firstItem="bm9-yt-AOG" firstAttribute="leading" secondItem="OIT-wa-PIH" secondAttribute="trailing" constant="30" id="onq-xD-07n"/>
+                                        <constraint firstItem="OIT-wa-PIH" firstAttribute="height" secondItem="bm9-yt-AOG" secondAttribute="height" id="t7p-QF-C07"/>
                                         <constraint firstAttribute="bottom" secondItem="bm9-yt-AOG" secondAttribute="bottom" constant="10" id="toh-yz-FXD"/>
                                         <constraint firstAttribute="bottom" secondItem="wNf-a0-U47" secondAttribute="bottom" constant="10" id="ycb-Kc-HCI"/>
                                     </constraints>

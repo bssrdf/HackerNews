@@ -14,7 +14,7 @@ let NewsCellHeight: CGFloat = 100.0
 let NewsCellTitleMarginConstant: CGFloat = 16.0
 let NewsCellTitleFontSize: CGFloat = 25.0
 let NewsCellUrlFontSize: CGFloat = 16.0
-let NewsCellButtonFontSize: CGFloat = 11.0
+let NewsCellButtonFontSize: CGFloat = 12.0
 let NewsCellTitleDefaultHeight: CGFloat = 20.0
 
 class StoryTableViewCell: UITableViewCell {
@@ -94,7 +94,7 @@ class StoryTableViewCell: UITableViewCell {
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String!) {
       super.init(style: style, reuseIdentifier: reuseIdentifier)
-  }
+  }*/
 
 
 
@@ -107,7 +107,7 @@ class StoryTableViewCell: UITableViewCell {
       
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+   /* override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
