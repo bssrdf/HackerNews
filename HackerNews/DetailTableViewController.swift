@@ -228,7 +228,6 @@ class DetailTableViewController: UITableViewController,
   
   func addChildComment(_ comment: Comment, depth: Int){
       comment.level = depth
-      //comment.level = 0
       self.comments.append(comment)
       self.commentsMap.removeValue(forKey: comment.id)
       if let kids = comment.kids {
@@ -237,7 +236,6 @@ class DetailTableViewController: UITableViewController,
             print("map has \(self.commentsMap.count) comments" )
             print("\(id) is nil and depth is \(depth)")
           }*/
-          //let childcomment = self.commentsMap[id]!
           if let childcomment = self.commentsMap[id] {
             self.addChildComment(childcomment, depth: depth+1)
           }
@@ -260,22 +258,14 @@ class DetailTableViewController: UITableViewController,
     }*/
     
     if let kids = comment.kids{
-       //var sortedComments = [Comment]()
        for kid in kids{
           let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(kid))
           query?.observeSingleEvent(of: .value, with: { snapshot in
             if let childcomment = self.extractComment(snapshot!){
-            /*if childcomment.id == 21541859 {
-              print("this comment exists with id \(childcomment.id)")
-              if let ckids = childcomment.kids{
-                 print("the kids are \(ckids)")
-              }
-            }*/
-            //print("comment with id: \(childcomment.id)")
                self.retrieveComment(root: childcomment)
             }
             if self.commentsMap.count == self.story!.descendants{
-            //if self.commentsMap.count == 50 {
+            //if self.commentsMap.count == 37 {
                //  self.commentsMap.count == self.story!.descendants {
               //print("total # of comments is \(self.commentsMap.count)")
               
@@ -287,10 +277,7 @@ class DetailTableViewController: UITableViewController,
                   print("problem id is \(id)")
                 }
               }
-              self.cacheHeight()
-              //if self.story!.descendants < 50 {
               self.retrievingComments = false
-              //}
               self.tableView.reloadData()
               UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
@@ -333,7 +320,7 @@ class DetailTableViewController: UITableViewController,
                 self.comments.append(com)
               }
             }
-            self.cacheHeight()
+            //self.cacheHeight()
             self.retrievingComments = false
             self.tableView.reloadData()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false

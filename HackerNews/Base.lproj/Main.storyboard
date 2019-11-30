@@ -211,7 +211,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNf-a0-U47" userLabel="Username Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="292.66666666666669" y="63" width="111.33333333333331" height="46.666666666666657"/>
+                                            <rect key="frame" x="286" y="73" width="118" height="26.666666666666671"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -227,7 +227,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIT-wa-PIH" userLabel="Votes Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="9.9999999999999929" y="63" width="111.33333333333331" height="46.666666666666657"/>
+                                            <rect key="frame" x="10" y="73" width="118" height="26.666666666666671"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -249,7 +249,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-yt-AOG" userLabel="Comments Label" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                            <rect key="frame" x="151.33333333333334" y="63" width="111.33333333333334" height="46.666666666666657"/>
+                                            <rect key="frame" x="148" y="73" width="118" height="26.666666666666671"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Comments"/>
@@ -260,23 +260,23 @@
                                         <constraint firstItem="y6V-dH-lPS" firstAttribute="top" secondItem="s6T-TU-zGf" secondAttribute="bottom" constant="2" id="3qH-Ai-f5g"/>
                                         <constraint firstItem="OIT-wa-PIH" firstAttribute="width" secondItem="wNf-a0-U47" secondAttribute="width" id="5SC-bX-Ult"/>
                                         <constraint firstItem="s6T-TU-zGf" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="6mZ-Vs-raV"/>
-                                        <constraint firstItem="wNf-a0-U47" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="10" id="AMZ-xy-03S"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="top" secondItem="y6V-dH-lPS" secondAttribute="bottom" constant="20" id="AMZ-xy-03S"/>
                                         <constraint firstItem="MiL-Nr-oiQ" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="BX4-wi-HB7"/>
                                         <constraint firstItem="bm9-yt-AOG" firstAttribute="width" secondItem="wNf-a0-U47" secondAttribute="width" id="HCW-G1-JyI"/>
                                         <constraint firstAttribute="trailing" secondItem="y6V-dH-lPS" secondAttribute="trailing" constant="16" id="Jwg-2g-tFf"/>
                                         <constraint firstItem="OIT-wa-PIH" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="10" id="M2C-Kr-TZe"/>
                                         <constraint firstItem="bm9-yt-AOG" firstAttribute="height" secondItem="wNf-a0-U47" secondAttribute="height" id="OZF-Kd-AbQ"/>
                                         <constraint firstItem="OIT-wa-PIH" firstAttribute="height" secondItem="wNf-a0-U47" secondAttribute="height" id="U2V-39-t8d"/>
-                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="leading" secondItem="OIT-wa-PIH" secondAttribute="trailing" constant="30" id="XvD-v4-Lpz"/>
+                                        <constraint firstItem="bm9-yt-AOG" firstAttribute="leading" secondItem="OIT-wa-PIH" secondAttribute="trailing" constant="20" id="XvD-v4-Lpz"/>
                                         <constraint firstAttribute="trailing" secondItem="s6T-TU-zGf" secondAttribute="trailing" constant="16" id="aqv-dS-Lc8"/>
                                         <constraint firstItem="s6T-TU-zGf" firstAttribute="top" secondItem="87G-YK-TLL" secondAttribute="top" constant="10" id="d4a-7f-UBV"/>
                                         <constraint firstItem="y6V-dH-lPS" firstAttribute="leading" secondItem="87G-YK-TLL" secondAttribute="leading" constant="16" id="dvW-9H-HcN"/>
                                         <constraint firstItem="OIT-wa-PIH" firstAttribute="centerY" secondItem="wNf-a0-U47" secondAttribute="centerY" id="fLo-sQ-HPG"/>
                                         <constraint firstAttribute="trailing" secondItem="MiL-Nr-oiQ" secondAttribute="trailing" constant="16" id="hDY-vM-S0a"/>
-                                        <constraint firstItem="MiL-Nr-oiQ" firstAttribute="top" secondItem="wNf-a0-U47" secondAttribute="bottom" constant="10" id="iBa-71-y5c"/>
+                                        <constraint firstItem="MiL-Nr-oiQ" firstAttribute="top" secondItem="wNf-a0-U47" secondAttribute="bottom" constant="20" id="iBa-71-y5c"/>
                                         <constraint firstItem="bm9-yt-AOG" firstAttribute="centerY" secondItem="wNf-a0-U47" secondAttribute="centerY" id="mZv-Df-JwT"/>
                                         <constraint firstAttribute="bottom" secondItem="MiL-Nr-oiQ" secondAttribute="bottom" constant="10" id="msw-EH-wCl"/>
-                                        <constraint firstItem="wNf-a0-U47" firstAttribute="leading" secondItem="bm9-yt-AOG" secondAttribute="trailing" constant="30" id="pBn-xA-e8C"/>
+                                        <constraint firstItem="wNf-a0-U47" firstAttribute="leading" secondItem="bm9-yt-AOG" secondAttribute="trailing" constant="20" id="pBn-xA-e8C"/>
                                         <constraint firstAttribute="trailing" secondItem="wNf-a0-U47" secondAttribute="trailing" constant="10" id="vo6-Zd-Jcn"/>
                                     </constraints>
                                 </tableViewCellContentView>
