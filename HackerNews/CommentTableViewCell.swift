@@ -14,9 +14,6 @@ let CommentCellTopMargin: CGFloat = 10.0
 let CommentCellFontSize: CGFloat = 16.0
 let CommentCellUsernameHeight: CGFloat = 25.0
 let CommentCellBottomMargin: CGFloat = 10.0
-//let user_debug: String = "qwerty456127"
-//let user_debug: String = "powerapple"
-//let user_debug: String = "tdsamardzhiev"
 
 
 class CommentTableViewCell: UITableViewCell {
@@ -39,8 +36,7 @@ class CommentTableViewCell: UITableViewCell {
           let indentation = CommentCellMarginConstant + (CommentCellMarginConstant * CGFloat(self.comment.level))
           self.usernameLeftMarginContraint.constant = indentation
           self.commentLeftMarginContraint.constant = indentation
-          //self.commentTextView.font = UIFont.systemFont(ofSize: CommentCellFontSize)
-          //self.commentTextView.textColor = UIColor.CommentLightGrayColor()
+          
 
           self.authorLabel.attributedText = fullAttributed
           self.commentTextView.attributedText = self.URLAttributedText(input: comment.text!)

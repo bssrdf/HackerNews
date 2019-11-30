@@ -41,8 +41,12 @@ class DetailTableViewController: UITableViewController,
 
         
         retrieveComments()
-      tableView.rowHeight = UITableView.automaticDimension
-      tableView.estimatedRowHeight = 600
+        // https://www.raywenderlich.com/8549-self-sizing-table-view-cells
+        // When you set the row height as UITableViewAutomaticDimension, the table view is told to use the Auto Layout constraints and the contents of its cells to determine each cell’s height.
+
+        //In order for the table view to do this, you must also provide an estimatedRowHeight. In this case, 600 is just an arbitrary value that works well in this particular instance. For your own projects, you should pick a value that better conforms to the type of data that you’ll display.
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
