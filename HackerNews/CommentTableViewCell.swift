@@ -32,12 +32,15 @@ class CommentTableViewCell: UITableViewCell {
                                                               NSAttributedString.Key.foregroundColor: UIColor.DateLighGrayColor()])
           let fullAttributed = NSMutableAttributedString(attributedString: usernameAttributed)
           fullAttributed.append(dateAttribute)
-
+          
+          //eliminate the inner padding from SO
+        //https://stackoverflow.com/questions/31104431/uitextview-offsets-text-differently-than-uilabel
+          self.commentTextView.textContainer.lineFragmentPadding = 0;
+          self.commentTextView.textContainerInset = UIEdgeInsets.zero;
           let indentation = CommentCellMarginConstant + (CommentCellMarginConstant * CGFloat(self.comment.level))
           self.usernameLeftMarginContraint.constant = indentation
           self.commentLeftMarginContraint.constant = indentation
           self.authorLabel.attributedText = fullAttributed
-          
           
           // below showed the trick get the link shown in blue color
           // without underline and the same fontsize as the other text

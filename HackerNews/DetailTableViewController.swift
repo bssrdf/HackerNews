@@ -308,8 +308,6 @@ class DetailTableViewController: UITableViewController,
         // print("first story's comment # \(id)")
          let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(id))
          query?.observeSingleEvent(of: .value, with: { snapshot in
-            
-        
           if let comment = self.extractComment(snapshot!) {
             self.retrieveComment(root: comment)
           }
@@ -320,7 +318,6 @@ class DetailTableViewController: UITableViewController,
                 self.comments.append(com)
               }
             }
-            //self.cacheHeight()
             self.retrievingComments = false
             self.tableView.reloadData()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
