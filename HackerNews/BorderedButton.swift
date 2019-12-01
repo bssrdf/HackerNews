@@ -56,6 +56,12 @@ class BorderedButton: UIView {
       }
   }
   
+  @IBInspectable var textAlignment:  NSTextAlignment = .center {
+      didSet {
+        self.button.titleLabel?.textAlignment = textAlignment
+      }
+  }
+  
   required init?(coder aDecoder: NSCoder)  {
       super.init(coder: aDecoder)
       self.setup()
