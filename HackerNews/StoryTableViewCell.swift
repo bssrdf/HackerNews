@@ -14,7 +14,7 @@ let NewsCellHeight: CGFloat = 100.0
 let NewsCellTitleMarginConstant: CGFloat = 16.0
 let NewsCellTitleFontSize: CGFloat = 21.0
 let NewsCellUrlFontSize: CGFloat = 16.0
-let NewsCellButtonFontSize: CGFloat = 14.0
+let NewsCellButtonFontSize: CGFloat = 13.0
 let NewsCellTitleDefaultHeight: CGFloat = 20.0
 
 class StoryTableViewCell: UITableViewCell {
@@ -76,8 +76,10 @@ class StoryTableViewCell: UITableViewCell {
             self.storyLabel.text = input
           }
           else{
+            self.storyLabel.font = UIFont.systemFont(ofSize: 0.0)
             self.storyLabel.text = ""
             self.storyLabel.isHidden = true
+//          self.storyLabel.frame = CGRect.zero
           }
 
           /*self.voteLabel.onButtonTouch = {(sender: UIButton) in
@@ -126,13 +128,16 @@ class StoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }*/
   
-  /*override func layoutSubviews() {
+  override func layoutSubviews() {
       super.layoutSubviews()
 
       //self.titleLabel.preferredMaxLayoutWidth = self.contentView.bounds.width - (self.titleMarginConstrain.constant * 2)
-    
-    print("user size is \(self.usernameLabel.frame.width) x \(self.usernameLabel.frame.height)")
-  }*/
+   /* if let _ = self.post.text { }
+    else{
+        self.storyLabel.frame = CGRect.zero
+    }*/
+    print("story size is \(self.storyLabel.frame.width) x \(self.storyLabel.frame.height)")
+  }
 
 
   class func heightForText(text: NSString, bounds: CGRect) -> CGFloat {

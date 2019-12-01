@@ -195,7 +195,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let data = snapshot.value as! Dictionary<String, Any>
     let title = data["title"] as! String
     let url = data["url"] as? String
-    var text = ""
+    var text: String? = nil
     if let htmltext = data["text"] as? String {
       text = String.stringByRemovingHTMLEntities(htmltext)
     }
