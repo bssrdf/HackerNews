@@ -41,6 +41,9 @@ class DetailTableViewController: UITableViewController,
 
         
         retrieveComments()
+        if story!.descendants == 0 {
+          self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        }
         // https://www.raywenderlich.com/8549-self-sizing-table-view-cells
         // When you set the row height as UITableViewAutomaticDimension, the table view is told to use the Auto Layout constraints and the contents of its cells to determine each cell’s height.
 
