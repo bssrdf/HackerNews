@@ -21,6 +21,10 @@ public extension UIColor {
     public class func ReadingListColor() -> UIColor {
         return UIColor.RGBColor(red: 74, green: 144, blue: 226)
     }
+  
+    public class func MainStoryBackgroundColor() -> UIColor {
+      return UIColor.RGBColor(red: 255, green: 255, blue: 246)
+    }
     
     public class func DateLighGrayColor() -> UIColor {
         return UIColor.RGBColor(red: 170, green: 170, blue: 170)
