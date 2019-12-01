@@ -12,9 +12,9 @@ let NewsCellsId = "newsCellId"
 //let NewsCellHeight: CGFloat = 110.0
 let NewsCellHeight: CGFloat = 100.0
 let NewsCellTitleMarginConstant: CGFloat = 16.0
-let NewsCellTitleFontSize: CGFloat = 25.0
+let NewsCellTitleFontSize: CGFloat = 21.0
 let NewsCellUrlFontSize: CGFloat = 16.0
-let NewsCellButtonFontSize: CGFloat = 12.0
+let NewsCellButtonFontSize: CGFloat = 14.0
 let NewsCellTitleDefaultHeight: CGFloat = 20.0
 
 class StoryTableViewCell: UITableViewCell {
@@ -30,6 +30,7 @@ class StoryTableViewCell: UITableViewCell {
     
   var post: Story! {
       didSet{
+          self.titleLabel.font = UIFont.systemFont(ofSize: NewsCellTitleFontSize)
           self.titleLabel.text = self.post.title
           self.titleLabel.numberOfLines = 0
         //if let _time = self.post.time {
@@ -112,6 +113,10 @@ class StoryTableViewCell: UITableViewCell {
       self.voteLabel.labelFontSize = NewsCellButtonFontSize
       self.commentsLabel.labelFontSize = NewsCellButtonFontSize
       self.usernameLabel.labelFontSize = NewsCellButtonFontSize
+      self.voteLabel.textAlignment = .left
+      self.commentsLabel.textAlignment = .left
+      self.usernameLabel.textAlignment = .left
+      self.storyLabel.backgroundColor = UIColor.MainStoryBackgroundColor()
       
     }
 
