@@ -59,6 +59,7 @@ class BorderedButton: UIView {
   @IBInspectable var isEnabled: Bool = true {
       didSet {
           self.button.isEnabled = isEnabled
+          self.button.alpha = isEnabled ? 1.0 : 0.5
       }
   }
   
