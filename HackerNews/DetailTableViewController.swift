@@ -203,7 +203,13 @@ class DetailTableViewController: UITableViewController,
     }
     let data = snapshot.value as! Dictionary<String, Any>
     let id = data["id"] as! Int
-    let by = data["by", default: "anonymous"] as! String
+    var by: String
+    if let author = data["by"] as? String {
+       by = author
+    }
+    else{
+       return nil
+    }
     let kids = data["kids"] as? [Int]
     var text = ""
     if let htmltext = data["text"] as? String {

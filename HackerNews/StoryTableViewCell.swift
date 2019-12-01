@@ -128,7 +128,7 @@ class StoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }*/
   
-  override func layoutSubviews() {
+  /*override func layoutSubviews() {
       super.layoutSubviews()
 
       //self.titleLabel.preferredMaxLayoutWidth = self.contentView.bounds.width - (self.titleMarginConstrain.constant * 2)
@@ -137,7 +137,7 @@ class StoryTableViewCell: UITableViewCell {
         self.storyLabel.frame = CGRect.zero
     }*/
     print("story size is \(self.storyLabel.frame.width) x \(self.storyLabel.frame.height)")
-  }
+  }*/
 
 
   class func heightForText(text: NSString, bounds: CGRect) -> CGFloat {
