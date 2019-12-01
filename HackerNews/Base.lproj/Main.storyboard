@@ -59,7 +59,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="GSA-Bh-1dA">
-                                <rect key="frame" x="0.0" y="97" width="414" height="639"/>
+                                <rect key="frame" x="0.0" y="97" width="414" height="599"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.98798537254333496" green="0.30799436569213867" blue="0.030261484906077385" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -91,92 +91,65 @@
                                             <segue destination="NJa-DY-ndZ" kind="show" identifier="ShowComment" id="txf-Az-q5k"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PageGuideCell" rowHeight="50" id="0oh-X3-lA4" customClass="PageGuideCell" customModule="HackerNews" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="83" width="414" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0oh-X3-lA4" id="JL6-My-s9d">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09U-fS-hYI" userLabel="Prev Button" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                                    <rect key="frame" x="50" y="10" width="107" height="30"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Wa9-xb-4io"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Prev"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
-                                                            <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="labelFontSize">
-                                                            <real key="value" value="25"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQr-29-Rm2" userLabel="Next Button" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
-                                                    <rect key="frame" x="257" y="10" width="107" height="30"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="SXj-6S-elj"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Next"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
-                                                            <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="labelFontSize">
-                                                            <real key="value" value="25"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="TQr-29-Rm2" firstAttribute="top" secondItem="JL6-My-s9d" secondAttribute="top" constant="10" id="BJs-bG-fia"/>
-                                                <constraint firstItem="TQr-29-Rm2" firstAttribute="width" secondItem="09U-fS-hYI" secondAttribute="width" id="PGm-54-s0Y"/>
-                                                <constraint firstItem="09U-fS-hYI" firstAttribute="top" secondItem="JL6-My-s9d" secondAttribute="top" constant="10" id="XjA-6b-Hiq"/>
-                                                <constraint firstAttribute="trailing" secondItem="TQr-29-Rm2" secondAttribute="trailing" constant="50" id="lpV-mW-itZ"/>
-                                                <constraint firstItem="TQr-29-Rm2" firstAttribute="leading" secondItem="09U-fS-hYI" secondAttribute="trailing" constant="100" id="mQf-di-Czc"/>
-                                                <constraint firstItem="09U-fS-hYI" firstAttribute="leading" secondItem="JL6-My-s9d" secondAttribute="leading" constant="50" id="n6b-RI-1lR"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="nextButton" destination="TQr-29-Rm2" id="Ea2-fU-Fzk"/>
-                                            <outlet property="nextLeftMarginConstraint" destination="mQf-di-Czc" id="g4z-E7-PTG"/>
-                                            <outlet property="nextRightMarginConstraint" destination="lpV-mW-itZ" id="WiQ-26-4lJ"/>
-                                            <outlet property="prevButton" destination="09U-fS-hYI" id="b1F-h7-W0g"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="KY7-TY-Edg" id="NET-CF-vjg"/>
                                     <outlet property="delegate" destination="KY7-TY-Edg" id="e9f-2v-WbN"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VrN-eq-CKK" userLabel="Prev Button" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
+                                <rect key="frame" x="50" y="701" width="107" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="o7y-3u-aVT"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Prev"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
+                                        <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ru1-0J-Fto" userLabel="Next Button" customClass="BorderedButton" customModule="HackerNews" customModuleProvider="target">
+                                <rect key="frame" x="257" y="701" width="107" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0Qj-cO-Chd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
+                                        <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Next"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ru1-0J-Fto" secondAttribute="trailing" constant="50" id="27H-m6-MKF"/>
                             <constraint firstAttribute="trailing" secondItem="kIS-KG-cZA" secondAttribute="trailing" id="8MQ-vB-MWL"/>
                             <constraint firstItem="GSA-Bh-1dA" firstAttribute="trailing" secondItem="kIS-KG-cZA" secondAttribute="trailing" id="E1Q-7y-lQ3"/>
+                            <constraint firstItem="ru1-0J-Fto" firstAttribute="top" secondItem="GSA-Bh-1dA" secondAttribute="bottom" constant="5" id="FNI-H4-6aS"/>
+                            <constraint firstItem="ru1-0J-Fto" firstAttribute="width" secondItem="VrN-eq-CKK" secondAttribute="width" id="KU3-85-GkH"/>
                             <constraint firstItem="kIS-KG-cZA" firstAttribute="top" secondItem="8Qd-dk-FSF" secondAttribute="bottom" constant="11" id="MGM-bL-unW"/>
                             <constraint firstItem="kIS-KG-cZA" firstAttribute="leading" secondItem="xHn-jJ-Twf" secondAttribute="leading" id="MYO-Js-R7q"/>
                             <constraint firstItem="8Qd-dk-FSF" firstAttribute="leading" secondItem="xHn-jJ-Twf" secondAttribute="leadingMargin" constant="-6" id="UUY-0w-ZF8"/>
+                            <constraint firstItem="ru1-0J-Fto" firstAttribute="leading" secondItem="VrN-eq-CKK" secondAttribute="trailing" constant="100" id="ZrO-rJ-H2S"/>
+                            <constraint firstItem="Eeq-zR-k7D" firstAttribute="top" secondItem="ru1-0J-Fto" secondAttribute="bottom" constant="5" id="b9W-gD-Edu"/>
                             <constraint firstItem="8Qd-dk-FSF" firstAttribute="top" secondItem="vZo-xW-fhA" secondAttribute="bottom" constant="10" id="cBX-lY-uR0"/>
                             <constraint firstItem="Eeq-zR-k7D" firstAttribute="top" secondItem="kIS-KG-cZA" secondAttribute="bottom" constant="366" id="cHZ-wu-gzo"/>
+                            <constraint firstItem="VrN-eq-CKK" firstAttribute="leading" secondItem="xHn-jJ-Twf" secondAttribute="leading" constant="50" id="f42-WZ-0Yc"/>
+                            <constraint firstItem="Eeq-zR-k7D" firstAttribute="top" secondItem="VrN-eq-CKK" secondAttribute="bottom" constant="5" id="hUh-Da-eZB"/>
                             <constraint firstItem="GSA-Bh-1dA" firstAttribute="leading" secondItem="kIS-KG-cZA" secondAttribute="leading" id="hpo-i4-LiI"/>
-                            <constraint firstItem="GSA-Bh-1dA" firstAttribute="bottom" secondItem="Eeq-zR-k7D" secondAttribute="top" id="i0V-no-hAw"/>
                             <constraint firstItem="GSA-Bh-1dA" firstAttribute="top" secondItem="8Qd-dk-FSF" secondAttribute="bottom" constant="12" id="n9r-0u-SBu"/>
                             <constraint firstItem="8Qd-dk-FSF" firstAttribute="centerX" secondItem="kIS-KG-cZA" secondAttribute="centerX" id="oG2-Bs-FFq"/>
+                            <constraint firstItem="VrN-eq-CKK" firstAttribute="top" secondItem="GSA-Bh-1dA" secondAttribute="bottom" constant="5" id="vR1-Qy-jkB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Hacker News" id="B9t-Gk-PQ1"/>
                     <connections>
+                        <outlet property="nextButton" destination="ru1-0J-Fto" id="83h-dQ-cAY"/>
+                        <outlet property="prevButton" destination="VrN-eq-CKK" id="ye7-H1-kZp"/>
                         <outlet property="tableView" destination="GSA-Bh-1dA" id="qRb-o2-dmI"/>
                     </connections>
                 </viewController>

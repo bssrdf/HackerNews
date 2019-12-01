@@ -10,6 +10,13 @@ import UIKit
 import SafariServices
 
 
+let PageMoveButtonFontSize: CGFloat = 14.0
+
+enum PageMoveActionType: Int{
+  case Next = 1
+  case Prev = -1
+}
+
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SFSafariViewControllerDelegate, PageGuideCellDelegate {
   
   // MARK: Properties
@@ -37,8 +44,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   var storyIdsByCategory: [StoryType:[Int]]!
   var lastPage = false
   @IBOutlet weak var tableView: UITableView!
-  
-  // MARK: Enums
+    
+  @IBOutlet weak var prevButton: BorderedButton!
+  @IBOutlet weak var nextButton: BorderedButton!
+    
+    // MARK: Enums
   
   enum StoryType {
     case top, new, show, ask
@@ -86,6 +96,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     refreshControl.attributedTitle = NSAttributedString(string: PullToRefreshString)
     tableView.insertSubview(refreshControl, at: 0)
     
+    self.prevButton.labelFontSize = PageMoveButtonFontSize
+    self.nextButton.labelFontSize = PageMoveButtonFontSize
+    self.prevButton.onButtonTouch = {(sender: UIButton) in
+      self.pageMoveDidSelectButton(actionType: PageMoveActionType.Prev.rawValue)
+    }
+    self.nextButton.onButtonTouch = {(sender: UIButton) in
+      self.pageMoveDidSelectButton(actionType: PageMoveActionType.Next.rawValue)
+    }
+    self.setButtonStatus()
     
     // Have to initialize this UILabel here because the view does not exist in init() yet.
     errorMessageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
@@ -228,18 +247,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   func numberOfSections(in tableView: UITableView) -> Int {
          // #warning Incomplete implementation, return the number of sections
-    return 2
+    return 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      if section == 0 {
+      //if section == 0 {
         return stories.count
-      }
-      return 1
+      //}
+      //return 1
     }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      if (indexPath.section == 0) {
+     // if (indexPath.section == 0) {
         let story = stories[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCellIdentifier) else{
           fatalError("The dequeued cell is not an instance of UITableViewCell")
@@ -248,15 +267,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let num_comments = story.descendants
         cell.detailTextLabel?.text = "\(story.score) points by \(story.by) with \(num_comments) comments"
         return cell
-    }
-    let identifier = "PageGuideCell"
+    //}
+    /*let identifier = "PageGuideCell"
     guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? PageGuideCell else{
       fatalError("The dequeued cell is not an instance of PageGuideCell")
     }
     cell.pageNumber = page
     cell.lastPage = lastPage
     cell.cellDelegate = self
-    return cell
+    return cell*/
     
   }
   
@@ -275,6 +294,24 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
       self.retrieveStoriesByPage(direction: actionType)
     }
     cell.lastPage = lastPage
+    
+  }
+  
+  func setButtonStatus(){
+       self.prevButton.isEnabled = page > 0
+       self.nextButton.isEnabled = !lastPage
+  }
+  
+  func pageMoveDidSelectButton(actionType: Int){
+    if actionType == PageMoveActionType.Next.rawValue{
+      page += 1
+      self.retrieveStoriesByPage(direction: actionType)
+    }
+    if actionType == PageGuideActionType.Prev.rawValue{
+      page -= 1
+      self.retrieveStoriesByPage(direction: actionType)
+    }
+    setButtonStatus()
     
   }
   
@@ -369,6 +406,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     page = 0
     lastPage = false
+    setButtonStatus()
     retrieveStories()
   }
 }
