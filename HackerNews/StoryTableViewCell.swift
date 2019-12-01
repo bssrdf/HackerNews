@@ -124,14 +124,16 @@ class StoryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
+    }*/
   
-  override func layoutSubviews() {
+  /*override func layoutSubviews() {
       super.layoutSubviews()
 
-      self.titleLabel.preferredMaxLayoutWidth = self.contentView.bounds.width - (self.titleMarginConstrain.constant * 2)
-  }
-*/
+      //self.titleLabel.preferredMaxLayoutWidth = self.contentView.bounds.width - (self.titleMarginConstrain.constant * 2)
+    
+    print("user size is \(self.usernameLabel.frame.width) x \(self.usernameLabel.frame.height)")
+  }*/
+
 
   class func heightForText(text: NSString, bounds: CGRect) -> CGFloat {
       let size = text.boundingRect(with: CGSize(width: bounds.width - (NewsCellTitleMarginConstant * 2), height: CGFloat.greatestFiniteMagnitude),
