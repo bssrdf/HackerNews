@@ -148,6 +148,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nextButton" destination="TQr-29-Rm2" id="Ea2-fU-Fzk"/>
+                                            <outlet property="nextLeftMarginConstraint" destination="mQf-di-Czc" id="g4z-E7-PTG"/>
+                                            <outlet property="nextRightMarginConstraint" destination="lpV-mW-itZ" id="WiQ-26-4lJ"/>
                                             <outlet property="prevButton" destination="09U-fS-hYI" id="b1F-h7-W0g"/>
                                         </connections>
                                     </tableViewCell>

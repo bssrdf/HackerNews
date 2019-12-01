@@ -30,6 +30,14 @@ class PageGuideCell: UITableViewCell {
   
     weak var cellDelegate: PageGuideCellDelegate?
   
+    @IBOutlet weak var nextLeftMarginConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var nextRightMarginConstraint: NSLayoutConstraint!
+    
+    var nextLeftMargin: CGFloat!
+    var nextRightMargin: CGFloat!
+    
+    
     var pageNumber: Int!{
       didSet{
         self.prevButton.isHidden = self.pageNumber == 0
@@ -39,6 +47,7 @@ class PageGuideCell: UITableViewCell {
         self.nextButton.onButtonTouch = {(sender: UIButton) in
             self.selectedAction(action: .Next)
         }
+        
       }
     }
   
@@ -64,6 +73,8 @@ class PageGuideCell: UITableViewCell {
       
         self.prevButton.labelFontSize = PageGuideCellButtonFontSize
         self.prevButton.borderWidth = 1
+        self.nextLeftMargin = self.nextLeftMarginConstraint.constant
+        self.nextRightMargin = self.nextRightMarginConstraint.constant
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -78,8 +89,15 @@ class PageGuideCell: UITableViewCell {
   
     override func layoutSubviews() {
       super.layoutSubviews()
-
-      
+        if pageNumber == 0 {
+          nextLeftMarginConstraint.constant = nextLeftMargin - 100
+          nextRightMarginConstraint.constant = nextRightMargin + 100
+          //CGFloat(self.contentView.bounds.width / 2)
+        }
+        else{
+            nextLeftMarginConstraint.constant = nextLeftMargin
+            nextRightMarginConstraint.constant = nextRightMargin
+        }
     }
 
 }
