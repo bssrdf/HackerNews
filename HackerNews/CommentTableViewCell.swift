@@ -14,6 +14,11 @@ let CommentCellTopMargin: CGFloat = 10.0
 let CommentCellFontSize: CGFloat = 16.0
 let CommentCellUsernameHeight: CGFloat = 25.0
 let CommentCellBottomMargin: CGFloat = 10.0
+let CommentCellBorderColor: [Int:UIColor] = [0: .red, 1:.yellow, 2:.blue, 3:.green, 4: .brown, 5:.orange]
+
+enum ViewSide {
+   case Left, Right, Top, Bottom
+}
 
 
 class CommentTableViewCell: UITableViewCell {
@@ -38,8 +43,9 @@ class CommentTableViewCell: UITableViewCell {
           self.commentTextView.textContainer.lineFragmentPadding = 0;
           self.commentTextView.textContainerInset = UIEdgeInsets.zero;
           let indentation = CommentCellMarginConstant + (CommentCellMarginConstant * CGFloat(self.comment.level))
-          self.usernameLeftMarginContraint.constant = indentation
-          self.commentLeftMarginContraint.constant = indentation
+          //self.usernameLeftMarginContraint.constant = indentation
+          //self.commentLeftMarginContraint.constant = indentation
+          self.leftBorderLeftMarginConstraint.constant = indentation
           self.authorLabel.attributedText = fullAttributed
           
           // below showed the trick get the link shown in blue color
@@ -62,9 +68,24 @@ class CommentTableViewCell: UITableViewCell {
           self.commentTextView.attributedText = newString
           self.commentTextView.linkTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: CommentCellFontSize),
             NSAttributedString.Key.foregroundColor: UIColor.ReadingListColor()]
+          
+          
+          let borderColor: UIColor = self.comment.level <= 5 ? CommentCellBorderColor[self.comment.level]! : .darkGray
+          self.leftBorderView.backgroundColor = borderColor
+          
       }
   }
+  
 
+  func addLeftBorder(toSide side: ViewSide, withColor color: CGColor, andThickness thickness: CGFloat, xPos: CGFloat) {
+    let border = CALayer()
+    border.backgroundColor = color
+    border.frame = CGRect(x: xPos, y: frame.minY, width: thickness, height: frame.height)
+    layer.addSublayer(border)
+  }
+  
+      
+      
   
     
     //@IBOutlet weak var authorLabel: UILabel!
@@ -73,11 +94,13 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var commentTextView: UITextView!
     
+    @IBOutlet weak var leftBorderView: UIView!
     // These constraints are used to indent deeper level comments
-    @IBOutlet weak var usernameLeftMarginContraint: NSLayoutConstraint!
-    @IBOutlet weak var commentLeftMarginContraint: NSLayoutConstraint!
+    //@IBOutlet weak var usernameLeftMarginContraint: NSLayoutConstraint!
+    //@IBOutlet weak var commentLeftMarginContraint: NSLayoutConstraint!
     
-  
+    @IBOutlet weak var leftBorderLeftMarginConstraint: NSLayoutConstraint!
+    
   
     
   

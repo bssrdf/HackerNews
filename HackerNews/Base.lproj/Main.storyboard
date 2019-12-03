@@ -282,34 +282,44 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gIw-oh-YF3">
-                                            <rect key="frame" x="10" y="37" width="394" height="43"/>
+                                            <rect key="frame" x="22" y="37" width="382" height="43"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B69-BE-llc">
-                                            <rect key="frame" x="10" y="10" width="394" height="21"/>
+                                            <rect key="frame" x="22" y="10" width="382" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STD-uz-8fd" userLabel="LeftBorder View">
+                                            <rect key="frame" x="10" y="10" width="2" height="70"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="2" id="i77-JM-Ih8"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="B69-BE-llc" firstAttribute="top" secondItem="MGC-gY-wTu" secondAttribute="top" constant="10" id="2r7-Av-D5A"/>
+                                        <constraint firstItem="B69-BE-llc" firstAttribute="leading" secondItem="STD-uz-8fd" secondAttribute="trailing" constant="10" id="3KW-kF-vig"/>
                                         <constraint firstAttribute="bottom" secondItem="gIw-oh-YF3" secondAttribute="bottom" constant="10" id="GxQ-5Z-0nQ"/>
-                                        <constraint firstItem="B69-BE-llc" firstAttribute="leading" secondItem="MGC-gY-wTu" secondAttribute="leading" constant="10" id="UhK-zr-aez"/>
+                                        <constraint firstItem="gIw-oh-YF3" firstAttribute="leading" secondItem="STD-uz-8fd" secondAttribute="trailing" constant="10" id="N18-dW-mDE"/>
+                                        <constraint firstAttribute="bottom" secondItem="STD-uz-8fd" secondAttribute="bottom" constant="10" id="TtK-a1-3NT"/>
+                                        <constraint firstItem="STD-uz-8fd" firstAttribute="leading" secondItem="MGC-gY-wTu" secondAttribute="leading" constant="10" id="Ux8-Pr-8GX"/>
                                         <constraint firstAttribute="trailing" secondItem="gIw-oh-YF3" secondAttribute="trailing" constant="10" id="Zgv-vg-XP3"/>
                                         <constraint firstAttribute="trailing" secondItem="B69-BE-llc" secondAttribute="trailing" constant="10" id="cik-f8-lua"/>
-                                        <constraint firstItem="gIw-oh-YF3" firstAttribute="leading" secondItem="MGC-gY-wTu" secondAttribute="leading" constant="10" id="fKs-Dh-xgU"/>
+                                        <constraint firstItem="STD-uz-8fd" firstAttribute="top" secondItem="MGC-gY-wTu" secondAttribute="top" constant="10" id="kGZ-xj-QTB"/>
                                         <constraint firstItem="gIw-oh-YF3" firstAttribute="top" secondItem="B69-BE-llc" secondAttribute="bottom" constant="6" id="q8e-PG-FU9"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorLabel" destination="B69-BE-llc" id="mef-24-YvE"/>
-                                    <outlet property="commentLeftMarginContraint" destination="fKs-Dh-xgU" id="Lh9-AL-1ag"/>
                                     <outlet property="commentTextView" destination="gIw-oh-YF3" id="PG4-Ga-4pV"/>
-                                    <outlet property="usernameLeftMarginContraint" destination="UhK-zr-aez" id="SBa-De-Pag"/>
+                                    <outlet property="leftBorderLeftMarginConstraint" destination="Ux8-Pr-8GX" id="J9b-o7-KE1"/>
+                                    <outlet property="leftBorderView" destination="STD-uz-8fd" id="Pbu-sD-WIy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
