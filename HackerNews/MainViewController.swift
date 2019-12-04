@@ -8,9 +8,11 @@
 
 import UIKit
 import SafariServices
+import HMSegmentedControl
 
 
 let PageMoveButtonFontSize: CGFloat = 14.0
+let StoryTypeControlFontSize: CGFloat = 16.0
 
 enum PageMoveActionType: Int{
   case Next = 1
@@ -29,7 +31,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   let ErrorMessageFontSize: CGFloat = 16
   let FirebaseRef = "https://hacker-news.firebaseio.com/v0/"
   let ItemChildRef = "item"
-  let StoryTypeChildRefMap = [StoryType.top: "topstories", .new: "newstories", .show: "showstories", .ask: "askstories"]
+  let StoryTypeChildRefMap = [StoryType.top: "topstories", .new: "newstories", .show: "showstories", .ask: "askstories", .best: "beststories", .job:  "jobstories"]
   let StoryLimit: UInt = 30
   let DefaultStoryType = StoryType.top
   
@@ -47,11 +49,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
   @IBOutlet weak var prevButton: BorderedButton!
   @IBOutlet weak var nextButton: BorderedButton!
+
+  @IBOutlet weak var storyTypeControl: HMSegmentedControl!
     
     // MARK: Enums
   
   enum StoryType {
-    case top, new, show, ask
+    case top, new, show, ask, job, best
   }
   
   // MARK: Structs
@@ -72,8 +76,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     super.init(coder: aDecoder)
     firebase = Firebase(url: FirebaseRef)
     stories = []
-    storyLimitByCategory = [.top : 500, .new : 500, .show: 200, .ask: 200]
-    storyIdsByCategory = [.top : [], .new : [], .show: [], .ask: []]
+    storyLimitByCategory = [.top : 500, .new : 500, .show: 200, .ask: 200, .job: 200, .best: 200]
+    storyIdsByCategory = [.top : [], .new : [], .show: [], .ask: [], .job: [], .best: []]
     storyType = DefaultStoryType
     retrievingStories = false
     refreshControl = UIRefreshControl()
@@ -95,6 +99,23 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     refreshControl.addTarget(self, action: #selector(MainViewController.retrieveStories), for: .valueChanged)
     refreshControl.attributedTitle = NSAttributedString(string: PullToRefreshString)
     tableView.insertSubview(refreshControl, at: 0)
+    //let segControl = HMSegmentedControl.init(sectionTitles: ["Top", "New", "Show", "Ask"])
+    self.storyTypeControl.sectionTitles = ["Top", "New", "Show", "Ask", "Best", "Jobs"]
+    self.storyTypeControl.selectionIndicatorLocation = .none
+    self.storyTypeControl.selectedSegmentIndex = 0
+    //self.storyTypeControl.borderType = .right
+    //self.storyTypeControl.borderColor = .orange
+    //self.storyTypeControl.contentVerticalAlignment = .top
+    self.storyTypeControl.backgroundColor = UIColor.HNColor()
+    self.storyTypeControl.borderType = .init(arrayLiteral: [.bottom, .left, .top])
+    self.storyTypeControl.borderColor = UIColor.HNColor()
+    self.storyTypeControl.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: StoryTypeControlFontSize), NSAttributedString.Key.foregroundColor: UIColor.black]
+    self.storyTypeControl.selectedTitleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: StoryTypeControlFontSize),  NSAttributedString.Key.foregroundColor: UIColor.white]
+    //self.storyTypeControl.selectionStyle = .box
+    self.storyTypeControl.selectionIndicatorColor = .none
+    //self.storyTypeControl.selectionIndicatorBoxColor = UIColor.HNColor()
+    //self.storyTypeControl.selectionIndicatorBoxOpacity = 1.0
+    
     
     self.prevButton.labelFontSize = PageMoveButtonFontSize
     self.nextButton.labelFontSize = PageMoveButtonFontSize
@@ -179,8 +200,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
      // print("storytype is \(self.storyType) with \(storyIds.count) stories")
       //storyIds[0] = 21602437
        self.storyIdsByCategory[self.storyType] = storyIds
+       if self.storyIdsByCategory[self.storyType]!.count <= self.StoryLimit
+       {
+          self.lastPage = true
+       }
+      DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
+      self.setButtonStatus()})
        
-       let storySlice = storyIds[0..<Int(self.StoryLimit)]
+       let storyAvail = storyIds.count >= Int(self.StoryLimit) ? Int(self.StoryLimit) : storyIds.count
+       let storySlice = storyIds[0..<storyAvail]
        let storyPage = Array(storySlice)
        for storyId in storyPage {
          let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(storyId))
@@ -188,7 +216,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
            
           storiesMap[storyId] = self.extractStory(snapshot!)
           
-          if storiesMap.count == Int(self.StoryLimit) {
+          if storiesMap.count == storyAvail{
             var sortedStories = [Story]()
             //for storyId in storyIds {
             for storyId in storyPage{
@@ -391,7 +419,30 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
   // MARK: IBActions
   
-  @IBAction func changeStoryType(_ sender: UISegmentedControl) {
+    @IBAction func changeStoryType(_ sender: HMSegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+          storyType = .top
+        } else if sender.selectedSegmentIndex == 1 {
+          storyType = .new
+        } else if sender.selectedSegmentIndex == 2 {
+          storyType = .show
+        } else if sender.selectedSegmentIndex == 3 {
+          storyType = .ask
+        } else if sender.selectedSegmentIndex == 4 {
+          storyType = .best
+        } else if sender.selectedSegmentIndex == 5 {
+          storyType = .job
+        }
+        else {
+          print("Bad segment index!")
+        }
+        page = 0
+        lastPage = false
+        
+        retrieveStories()
+        
+    }
+    /*@IBAction func changeStoryType(_ sender: UISegmentedControl) {
     if sender.selectedSegmentIndex == 0 {
       storyType = .top
     } else if sender.selectedSegmentIndex == 1 {
@@ -408,5 +459,5 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     lastPage = false
     setButtonStatus()
     retrieveStories()
-  }
+  }*/
 }

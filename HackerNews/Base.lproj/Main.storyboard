@@ -41,25 +41,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kIS-KG-cZA" customClass="HairlineView" customModule="HackerNews" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kIS-KG-cZA" customClass="HairlineView" customModule="HackerNews" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="113" width="600" height="121"/>
                                 <color key="backgroundColor" red="0.78431372549019607" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8Qd-dk-FSF">
-                                <rect key="frame" x="14" y="54" width="386" height="32"/>
-                                <segments>
-                                    <segment title="Top"/>
-                                    <segment title="Newest"/>
-                                    <segment title="Show HN"/>
-                                    <segment title="Ask HN"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="changeStoryType:" destination="KY7-TY-Edg" eventType="valueChanged" id="Hc4-ha-nMO"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="GSA-Bh-1dA">
-                                <rect key="frame" x="0.0" y="97" width="414" height="599"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="607"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.98798537254333496" green="0.30799436569213867" blue="0.030261484906077385" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -123,33 +110,43 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Next"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FQA-8k-NfM" userLabel="StoryType Control" customClass="HMSegmentedControl">
+                                <rect key="frame" x="14" y="49" width="386" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FGa-S3-BR0"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="changeStoryType:" destination="KY7-TY-Edg" eventType="valueChanged" id="rsU-so-fpq"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="FQA-8k-NfM" firstAttribute="centerX" secondItem="kIS-KG-cZA" secondAttribute="centerX" id="26i-AC-DCa"/>
                             <constraint firstAttribute="trailing" secondItem="ru1-0J-Fto" secondAttribute="trailing" constant="50" id="27H-m6-MKF"/>
+                            <constraint firstItem="FQA-8k-NfM" firstAttribute="leading" secondItem="xHn-jJ-Twf" secondAttribute="leadingMargin" constant="-6" id="6S0-np-bxd"/>
                             <constraint firstAttribute="trailing" secondItem="kIS-KG-cZA" secondAttribute="trailing" id="8MQ-vB-MWL"/>
+                            <constraint firstItem="GSA-Bh-1dA" firstAttribute="top" secondItem="FQA-8k-NfM" secondAttribute="bottom" constant="10" id="Ddo-N9-9DE"/>
                             <constraint firstItem="GSA-Bh-1dA" firstAttribute="trailing" secondItem="kIS-KG-cZA" secondAttribute="trailing" id="E1Q-7y-lQ3"/>
                             <constraint firstItem="ru1-0J-Fto" firstAttribute="top" secondItem="GSA-Bh-1dA" secondAttribute="bottom" constant="5" id="FNI-H4-6aS"/>
                             <constraint firstItem="ru1-0J-Fto" firstAttribute="width" secondItem="VrN-eq-CKK" secondAttribute="width" id="KU3-85-GkH"/>
-                            <constraint firstItem="kIS-KG-cZA" firstAttribute="top" secondItem="8Qd-dk-FSF" secondAttribute="bottom" constant="11" id="MGM-bL-unW"/>
                             <constraint firstItem="kIS-KG-cZA" firstAttribute="leading" secondItem="xHn-jJ-Twf" secondAttribute="leading" id="MYO-Js-R7q"/>
-                            <constraint firstItem="8Qd-dk-FSF" firstAttribute="leading" secondItem="xHn-jJ-Twf" secondAttribute="leadingMargin" constant="-6" id="UUY-0w-ZF8"/>
                             <constraint firstItem="ru1-0J-Fto" firstAttribute="leading" secondItem="VrN-eq-CKK" secondAttribute="trailing" constant="100" id="ZrO-rJ-H2S"/>
                             <constraint firstItem="Eeq-zR-k7D" firstAttribute="top" secondItem="ru1-0J-Fto" secondAttribute="bottom" constant="5" id="b9W-gD-Edu"/>
-                            <constraint firstItem="8Qd-dk-FSF" firstAttribute="top" secondItem="vZo-xW-fhA" secondAttribute="bottom" constant="10" id="cBX-lY-uR0"/>
                             <constraint firstItem="Eeq-zR-k7D" firstAttribute="top" secondItem="kIS-KG-cZA" secondAttribute="bottom" constant="366" id="cHZ-wu-gzo"/>
                             <constraint firstItem="VrN-eq-CKK" firstAttribute="leading" secondItem="xHn-jJ-Twf" secondAttribute="leading" constant="50" id="f42-WZ-0Yc"/>
                             <constraint firstItem="Eeq-zR-k7D" firstAttribute="top" secondItem="VrN-eq-CKK" secondAttribute="bottom" constant="5" id="hUh-Da-eZB"/>
                             <constraint firstItem="GSA-Bh-1dA" firstAttribute="leading" secondItem="kIS-KG-cZA" secondAttribute="leading" id="hpo-i4-LiI"/>
-                            <constraint firstItem="GSA-Bh-1dA" firstAttribute="top" secondItem="8Qd-dk-FSF" secondAttribute="bottom" constant="12" id="n9r-0u-SBu"/>
-                            <constraint firstItem="8Qd-dk-FSF" firstAttribute="centerX" secondItem="kIS-KG-cZA" secondAttribute="centerX" id="oG2-Bs-FFq"/>
                             <constraint firstItem="VrN-eq-CKK" firstAttribute="top" secondItem="GSA-Bh-1dA" secondAttribute="bottom" constant="5" id="vR1-Qy-jkB"/>
+                            <constraint firstItem="FQA-8k-NfM" firstAttribute="top" secondItem="vZo-xW-fhA" secondAttribute="bottom" constant="5" id="zA7-I7-9Dp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Hacker News" id="B9t-Gk-PQ1"/>
                     <connections>
                         <outlet property="nextButton" destination="ru1-0J-Fto" id="83h-dQ-cAY"/>
                         <outlet property="prevButton" destination="VrN-eq-CKK" id="ye7-H1-kZp"/>
+                        <outlet property="storyTypeControl" destination="FQA-8k-NfM" id="ybP-tn-ly1"/>
                         <outlet property="tableView" destination="GSA-Bh-1dA" id="qRb-o2-dmI"/>
                     </connections>
                 </viewController>
