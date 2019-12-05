@@ -107,8 +107,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //self.storyTypeControl.borderColor = .orange
     //self.storyTypeControl.contentVerticalAlignment = .top
     self.storyTypeControl.backgroundColor = UIColor.HNColor()
-    self.storyTypeControl.borderType = .init(arrayLiteral: [.bottom, .left, .top])
-    self.storyTypeControl.borderColor = UIColor.HNColor()
+    //self.storyTypeControl.borderType = .init(arrayLiteral: [.bottom, .left, .top])
+   //self.storyTypeControl.borderColor = UIColor.HNColor()
     self.storyTypeControl.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: StoryTypeControlFontSize), NSAttributedString.Key.foregroundColor: UIColor.black]
     self.storyTypeControl.selectedTitleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: StoryTypeControlFontSize),  NSAttributedString.Key.foregroundColor: UIColor.white]
     //self.storyTypeControl.selectionStyle = .box
@@ -224,6 +224,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             self.stories = sortedStories
             self.tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)})
             self.refreshControl.endRefreshing()
             self.retrievingStories = false
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
