@@ -147,7 +147,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let sp = Int(self.StoryLimit)
     let startIdIdx = self.page*sp
     var endIdIdx = (self.page+1)*sp
-    if endIdIdx > storyIds.count {
+    if endIdIdx >= storyIds.count {
        endIdIdx = storyIds.count
        lastPage = true
     }

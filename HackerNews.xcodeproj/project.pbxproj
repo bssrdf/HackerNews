@@ -10,6 +10,7 @@
 		3388E67D2381F8D600D5A82A /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388E67C2381F8D600D5A82A /* StoryTableViewCell.swift */; };
 		3388E67F2382428F00D5A82A /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388E67E2382428F00D5A82A /* BorderedButton.swift */; };
 		339D5E0D2383ACDF00CC2240 /* HTMLScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D5E0C2383ACDF00CC2240 /* HTMLScanner.swift */; };
+		33A7550B23A87BAC00736F67 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A7550A23A87BAC00736F67 /* User.swift */; };
 		33C46F30238CA36D00C309D2 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C46F2F238CA36D00C309D2 /* DoubleExtension.swift */; };
 		33CCC3A32378B402001A605D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CCC3A22378B402001A605D /* Comment.swift */; };
 		33CCC3A523792240001A605D /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CCC3A423792240001A605D /* Story.swift */; };
@@ -53,6 +54,7 @@
 		3388E67C2381F8D600D5A82A /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 		3388E67E2382428F00D5A82A /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		339D5E0C2383ACDF00CC2240 /* HTMLScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLScanner.swift; sourceTree = "<group>"; };
+		33A7550A23A87BAC00736F67 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		33C46F2F238CA36D00C309D2 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		33CCC3A22378B402001A605D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		33CCC3A423792240001A605D /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				33CCC3AC237BB2C9001A605D /* CommentTableViewCell.swift */,
 				3388E67C2381F8D600D5A82A /* StoryTableViewCell.swift */,
 				3388E67E2382428F00D5A82A /* BorderedButton.swift */,
+				33A7550A23A87BAC00736F67 /* User.swift */,
 			);
 			path = HackerNews;
 			sourceTree = "<group>";
@@ -371,11 +374,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-HackerNews/Pods-HackerNews-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Firebase/Firebase.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
+				"${BUILT_PRODUCTS_DIR}/LCLib/LCLib.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Firebase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LCLib.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -427,11 +432,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-HackerNewsUITests/Pods-HackerNewsUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Firebase/Firebase.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
+				"${BUILT_PRODUCTS_DIR}/LCLib/LCLib.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Firebase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LCLib.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -465,11 +472,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-HackerNewsTests/Pods-HackerNewsTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Firebase/Firebase.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
+				"${BUILT_PRODUCTS_DIR}/LCLib/LCLib.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Firebase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LCLib.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -491,6 +500,7 @@
 				33CCC3B3237FC7FA001A605D /* UIColorExt.swift in Sources */,
 				D7E162041948499C00AC4298 /* HairlineView.swift in Sources */,
 				3388E67F2382428F00D5A82A /* BorderedButton.swift in Sources */,
+				33A7550B23A87BAC00736F67 /* User.swift in Sources */,
 				33C46F30238CA36D00C309D2 /* DoubleExtension.swift in Sources */,
 				33CCC3A32378B402001A605D /* Comment.swift in Sources */,
 				33CCC3A523792240001A605D /* Story.swift in Sources */,
