@@ -195,7 +195,8 @@ class DetailTableViewController: UITableViewController,
   
   func extractComment(_ snapshot: FDataSnapshot) -> Comment? {
     if snapshot.value is NSNull {
-       return nil
+      return Comment(id: 0, by: "null", kids: [], text: "", time: 0, prettyTime: Double(1).timeIntervalAgo())
+//       return nil
     }
     let data = snapshot.value as! Dictionary<String, Any>
     let id = data["id"] as! Int
@@ -207,12 +208,16 @@ class DetailTableViewController: UITableViewController,
     }
     else{ // most likely the comment has been deleted by the author
           // make up a deleted comment
-       return Comment(id: id, by: "deleted", kids: [], text: "", time: time, prettyTime: prettyTime)
+       //return Comment(id: id, by: "deleted", kids: [], text: "", time: time, prettyTime: prettyTime)
+      return nil
     }
     let kids = data["kids"] as? [Int]
     var text = ""
     if let htmltext = data["text"] as? String {
       text = String.stringByRemovingHTMLEntities(htmltext)
+    }
+    if by == "bathtub365" {
+      print("\(id) has a problem")
     }
     return Comment(id: id, by: by, kids: kids, text: text, time: time, prettyTime: prettyTime)
   }
@@ -292,6 +297,8 @@ class DetailTableViewController: UITableViewController,
          query?.observeSingleEvent(of: .value, with: { snapshot in
           if let comment = self.extractComment(snapshot!) {
             self.retrieveComment(root: comment)
+          }else{
+            print("failed to extract comment with id \(id)")
           }
           if self.commentsMap.count == self.story!.descendants{
             if self.comments.isEmpty {
