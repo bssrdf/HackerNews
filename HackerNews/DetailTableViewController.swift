@@ -109,14 +109,9 @@ class DetailTableViewController: UITableViewController,
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? CommentTableViewCell else{
             fatalError("The dequeued cell is not an instance of CommentTableViewCell")
         }
-      //if let comments = comments{
       if comments.count > 0 {
-         //print("comments has \(comments.count)")
          let comment = comments[indexPath.row]
-        //print("cellForRowAt indexPath: for cell # \(indexPath.row)")
-        cell.comment = comment
-        //cell.authorLabel.text = comment.by+"  at level \(comment.level)"
-        // cell.commentTextView.text = comment.text
+         cell.comment = comment
         // Configure the cell...
       }
       return cell
@@ -129,8 +124,6 @@ class DetailTableViewController: UITableViewController,
       tableView.deselectRow(at: indexPath, animated: true)
       
       let story = self.story!
-      //print("story id is: \(story.id)")
-      
       if let url = story.url {
         let webViewController = SFSafariViewController(url: URL(string: url)!)
         webViewController.delegate = self
@@ -206,24 +199,21 @@ class DetailTableViewController: UITableViewController,
     }
     let data = snapshot.value as! Dictionary<String, Any>
     let id = data["id"] as! Int
+    let time = data["time"] as! Int
+    let prettyTime = Double(time).timeIntervalAgo()
     var by: String
     if let author = data["by"] as? String {
        by = author
     }
-    else{
-       return nil
+    else{ // most likely the comment has been deleted by the author
+          // make up a deleted comment
+       return Comment(id: id, by: "deleted", kids: [], text: "", time: time, prettyTime: prettyTime)
     }
     let kids = data["kids"] as? [Int]
     var text = ""
     if let htmltext = data["text"] as? String {
       text = String.stringByRemovingHTMLEntities(htmltext)
     }
-    let time = data["time"] as! Int
-    let prettyTime = Double(time).timeIntervalAgo()
-    //if text.contains("http"){
-   //   print(text)
-   // }
-    //print("author is "+by)
     return Comment(id: id, by: by, kids: kids, text: text, time: time, prettyTime: prettyTime)
   }
   
@@ -241,10 +231,6 @@ class DetailTableViewController: UITableViewController,
       self.commentsMap.removeValue(forKey: comment.id)
       if let kids = comment.kids {
         for id in kids {
-          /*if self.commentsMap[id] == nil{
-            print("map has \(self.commentsMap.count) comments" )
-            print("\(id) is nil and depth is \(depth)")
-          }*/
           if let childcomment = self.commentsMap[id] {
             self.addChildComment(childcomment, depth: depth+1)
           }
@@ -256,15 +242,7 @@ class DetailTableViewController: UITableViewController,
   
   func retrieveComment(root comment: Comment) -> Void{
     
-    //self.comments.append(comment)
     self.commentsMap[comment.id] = comment
-    //print(self.commentsMap.count)
-    /*if comment.id == 21541602 {
-      print("this comment exists in the map with id \(comment.id)")
-      if let ckids = comment.kids{
-         print("the kids are \(ckids)")
-      }
-    }*/
     
     if let kids = comment.kids{
        for kid in kids{
@@ -272,12 +250,10 @@ class DetailTableViewController: UITableViewController,
           query?.observeSingleEvent(of: .value, with: { snapshot in
             if let childcomment = self.extractComment(snapshot!){
                self.retrieveComment(root: childcomment)
+            }else{
+              print("failed to extract comment with id \(kid)")
             }
             if self.commentsMap.count == self.story!.descendants{
-            //if self.commentsMap.count == 37 {
-               //  self.commentsMap.count == self.story!.descendants {
-              //print("total # of comments is \(self.commentsMap.count)")
-              
               for id in self.story!.kids! {
                 if let childcomment = self.commentsMap[id] {
                   self.addChildComment(childcomment, depth: 0)
@@ -297,6 +273,8 @@ class DetailTableViewController: UITableViewController,
     
   }
   
+
+  
   @objc func retrieveComments(){
     if retrievingComments! {
       return
@@ -306,21 +284,15 @@ class DetailTableViewController: UITableViewController,
     retrievingComments = true
     
     if let story = story {
-      
-      //print(" story id is \(story.id)")
-      //print("story title is \(story.title)")
       comments.removeAll()
       commentsMap.removeAll()
       if let kids = story.kids{
-      
-      for id in kids{
-        // print("first story's comment # \(id)")
+        for id in kids{
          let query = self.firebase.child(byAppendingPath: self.ItemChildRef).child(byAppendingPath: String(id))
          query?.observeSingleEvent(of: .value, with: { snapshot in
           if let comment = self.extractComment(snapshot!) {
             self.retrieveComment(root: comment)
           }
-          //print("comment id is \(id) \(self.comments.count) and \(self.commentsMap.count)")
           if self.commentsMap.count == self.story!.descendants{
             if self.comments.isEmpty {
               for (_,com) in self.commentsMap {
