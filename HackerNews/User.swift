@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import LCLib
+//import LCLib
 
 class User {
    let name: String
