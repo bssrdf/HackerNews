@@ -11,6 +11,7 @@
 		3388E67F2382428F00D5A82A /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388E67E2382428F00D5A82A /* BorderedButton.swift */; };
 		339D5E0D2383ACDF00CC2240 /* HTMLScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D5E0C2383ACDF00CC2240 /* HTMLScanner.swift */; };
 		33A7550B23A87BAC00736F67 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A7550A23A87BAC00736F67 /* User.swift */; };
+		33BFCE6623C19267006B8586 /* CommentsOrderOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BFCE6523C19266006B8586 /* CommentsOrderOptionViewController.swift */; };
 		33C46F30238CA36D00C309D2 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C46F2F238CA36D00C309D2 /* DoubleExtension.swift */; };
 		33CCC3A32378B402001A605D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CCC3A22378B402001A605D /* Comment.swift */; };
 		33CCC3A523792240001A605D /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CCC3A423792240001A605D /* Story.swift */; };
@@ -55,6 +56,7 @@
 		3388E67E2382428F00D5A82A /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		339D5E0C2383ACDF00CC2240 /* HTMLScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLScanner.swift; sourceTree = "<group>"; };
 		33A7550A23A87BAC00736F67 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		33BFCE6523C19266006B8586 /* CommentsOrderOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsOrderOptionViewController.swift; sourceTree = "<group>"; };
 		33C46F2F238CA36D00C309D2 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		33CCC3A22378B402001A605D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		33CCC3A423792240001A605D /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				3388E67C2381F8D600D5A82A /* StoryTableViewCell.swift */,
 				3388E67E2382428F00D5A82A /* BorderedButton.swift */,
 				33A7550A23A87BAC00736F67 /* User.swift */,
+				33BFCE6523C19266006B8586 /* CommentsOrderOptionViewController.swift */,
 			);
 			path = HackerNews;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				33C46F30238CA36D00C309D2 /* DoubleExtension.swift in Sources */,
 				33CCC3A32378B402001A605D /* Comment.swift in Sources */,
 				33CCC3A523792240001A605D /* Story.swift in Sources */,
+				33BFCE6623C19267006B8586 /* CommentsOrderOptionViewController.swift in Sources */,
 				33CCC3B1237FC047001A605D /* HTMLString.swift in Sources */,
 				3388E67D2381F8D600D5A82A /* StoryTableViewCell.swift in Sources */,
 				33F1AA51238E2EFE00BE2659 /* PageGuideCell.swift in Sources */,

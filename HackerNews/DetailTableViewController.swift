@@ -9,8 +9,18 @@
 import UIKit
 import SafariServices
 
+public enum CommentsSortOrder{
+  case hierarchy
+  case dateAscending
+  case dateDescending
+  case voteDescending
+  case voteAscending
+}
+
+
+
 class DetailTableViewController: UITableViewController,
-      SFSafariViewControllerDelegate {
+      SFSafariViewControllerDelegate, UIPopoverPresentationControllerDelegate{
   
     //MARK: Properties
   
@@ -22,6 +32,7 @@ class DetailTableViewController: UITableViewController,
     var firebase: Firebase!
     var retrievingComments: Bool!
     var cellHeightCache: [CGFloat] = []
+    var commentsSortOrder: CommentsSortOrder = .hierarchy
     
   
   
@@ -40,7 +51,13 @@ class DetailTableViewController: UITableViewController,
         // self.clearsSelectionOnViewWillAppear = false
        
         let ellipsis = UIImage(named: "Options")
-        let optionButtonIterm = UIBarButtonItem(image: ellipsis, landscapeImagePhone: ellipsis, style: .plain, target: self, action: #selector(displaySortOptions))
+        let button = UIButton(type: .system)
+        button.setImage(ellipsis, for: .normal)
+      //button.setTitle("YourTitle", forState: .Normal)
+        button.sizeToFit()
+        button.addTarget(self, action: #selector(self.displaySortOptions), for: .touchUpInside)
+        let optionButtonIterm = UIBarButtonItem(customView: button)
+       // let optionButtonIterm = UIBarButtonItem(image: ellipsis, landscapeImagePhone: ellipsis, style: .plain, target: self, action: #selector(displaySortOptions))
         self.navigationItem.rightBarButtonItem  = optionButtonIterm
         retrieveComments()
         if story!.descendants == 0 {
@@ -143,22 +160,37 @@ class DetailTableViewController: UITableViewController,
 
   
    // MARK: Action
-  func displaySortOptions(sender: AnyObject)
+  @objc func displaySortOptions(sender: UIButton)
   {
-      /*let savingsInformationViewController = storyboard?.instantiateViewControllerWithIdentifier("SavingsAddPopoverVC") as SavingViewController
+    let savingsInformationViewController = storyboard?.instantiateViewController(withIdentifier: "CommentsOrder") as! CommentsOrderOptionViewController
 
-      savingsInformationViewController.delegate = self
-      savingsInformationViewController.strSaveText=labelText.text
+      //savingsInformationViewController.delegate = self
+      //savingsInformationViewController.strSaveText=labelText.text
 
-      savingsInformationViewController.modalPresentationStyle = .Popover
+    savingsInformationViewController.modalPresentationStyle = .popover
       if let popoverController = savingsInformationViewController.popoverPresentationController {
           popoverController.sourceView = sender
           popoverController.sourceRect = sender.bounds
-          popoverController.permittedArrowDirections = .Any
+          popoverController.permittedArrowDirections = .any
+         // popoverController.permittedArrowDirections = [.down, .up]
           popoverController.delegate = self
+          //savingsInformationViewController.preferredContentSize = CGSize(width: 80, height: 80)
       }
-      presentViewController(savingsInformationViewController, animated: true, completion: nil)*/
+    present(savingsInformationViewController, animated: true, completion: nil)
   }
+  
+  func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+      return .none
+  }
+  
+  // MARK: - UIPopoverPresentationControllerDelegate
+  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!) -> UIModalPresentationStyle {
+    return .none
+  }
+
+  /*func presentationController(controller: UIPresentationController!, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController! {
+      return UINavigationController(rootViewController: controller.presentedViewController)
+  }*/
   
     /*
     // Override to support conditional editing of the table view.

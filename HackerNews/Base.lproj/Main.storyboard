@@ -331,5 +331,13 @@
             </objects>
             <point key="canvasLocation" x="2173.913043478261" y="450.81521739130437"/>
         </scene>
+        <!--Comments Order Option View Controller-->
+        <scene sceneID="rbR-VK-LcJ">
+            <objects>
+                <viewController storyboardIdentifier="CommentsOrder" autoresizesArchivedViewToFullSize="NO" id="haX-Ob-imo" customClass="CommentsOrderOptionViewController" customModule="HackerNews" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a35-ID-CDN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2902" y="446"/>
+        </scene>
     </scenes>
 </document>
