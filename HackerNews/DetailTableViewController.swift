@@ -13,14 +13,14 @@ public enum CommentsSortOrder{
   case hierarchy
   case dateAscending
   case dateDescending
-  case voteDescending
-  case voteAscending
 }
 
 
 
 class DetailTableViewController: UITableViewController,
-      SFSafariViewControllerDelegate, UIPopoverPresentationControllerDelegate{
+SFSafariViewControllerDelegate, UIPopoverPresentationControllerDelegate, CommentOrderOptionDelegate {
+  
+  
   
     //MARK: Properties
   
@@ -32,7 +32,11 @@ class DetailTableViewController: UITableViewController,
     var firebase: Firebase!
     var retrievingComments: Bool!
     var cellHeightCache: [CGFloat] = []
-    var commentsSortOrder: CommentsSortOrder = .hierarchy
+    var commentsSortOrder: CommentsSortOrder = .hierarchy {
+        didSet{
+           sortComments()
+        }
+    }
     
   
   
@@ -157,40 +161,40 @@ class DetailTableViewController: UITableViewController,
     controller.dismiss(animated: true, completion: nil)
   }
     
-
+  // MARK:  CommentOrderOptionDelegate
+  func userPicked(_ order: CommentsSortOrder) {
+    self.commentsSortOrder = order
+  }
   
    // MARK: Action
   @objc func displaySortOptions(sender: UIButton)
   {
-    let savingsInformationViewController = storyboard?.instantiateViewController(withIdentifier: "CommentsOrder") as! CommentsOrderOptionViewController
+      let orderOptionViewController = storyboard?.instantiateViewController(withIdentifier: "CommentsOrder") as! CommentsOrderOptionViewController
 
-      //savingsInformationViewController.delegate = self
-      //savingsInformationViewController.strSaveText=labelText.text
-
-    savingsInformationViewController.modalPresentationStyle = .popover
-      if let popoverController = savingsInformationViewController.popoverPresentationController {
+      orderOptionViewController.delegate = self
+      orderOptionViewController.userPickedOrder = self.commentsSortOrder
+      orderOptionViewController.modalPresentationStyle = .popover
+      if let popoverController = orderOptionViewController.popoverPresentationController {
           popoverController.sourceView = sender
           popoverController.sourceRect = sender.bounds
           popoverController.permittedArrowDirections = .any
-         // popoverController.permittedArrowDirections = [.down, .up]
           popoverController.delegate = self
-          //savingsInformationViewController.preferredContentSize = CGSize(width: 80, height: 80)
       }
-    present(savingsInformationViewController, animated: true, completion: nil)
+      present(orderOptionViewController, animated: true, completion: nil)
   }
   
+  // MARK: - UIPopoverPresentationControllerDelegate
+  // this is woring
   func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
       return .none
   }
   
-  // MARK: - UIPopoverPresentationControllerDelegate
+  // on iOS 12 and Xcode 11, this is not working; popover still
+  // occupies the whole screen
   func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!) -> UIModalPresentationStyle {
     return .none
   }
 
-  /*func presentationController(controller: UIPresentationController!, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController! {
-      return UINavigationController(rootViewController: controller.presentedViewController)
-  }*/
   
     /*
     // Override to support conditional editing of the table view.
@@ -277,6 +281,49 @@ class DetailTableViewController: UITableViewController,
     UIApplication.shared.isNetworkActivityIndicatorVisible = false
   }
   
+  func arrangeCommentsHierarchy(){
+    for id in self.story!.kids! {
+      if let childcomment = self.commentsMap[id] {
+        self.addChildComment(childcomment, depth: 0)
+      }
+      else{
+        print("problem id is \(id)")
+      }
+    }
+  }
+  
+  
+  func sortComments(){
+    switch self.commentsSortOrder {
+       case .hierarchy:
+          if !comments.isEmpty{
+            self.commentsMap.removeAll()
+            for comment in comments{
+              self.commentsMap[comment.id] = comment
+            }
+            self.comments.removeAll()
+            self.arrangeCommentsHierarchy()
+          }
+       case .dateAscending:
+         if !comments.isEmpty{
+            self.comments.sort(by: {$0.time! > $1.time!})
+            for comment in self.comments {
+              comment.level = 0
+            }
+         }
+       case .dateDescending:
+         if !comments.isEmpty{
+            comments.sort(by: {$0.time! < $1.time!})
+            for comment in self.comments {
+              comment.level = 0
+            }
+         }
+    }
+    self.tableView.reloadData()
+    DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
+    self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)})
+  }
+  
   func addChildComment(_ comment: Comment, depth: Int){
       comment.level = depth
       self.comments.append(comment)
@@ -306,14 +353,7 @@ class DetailTableViewController: UITableViewController,
               print("failed to extract comment with id \(kid)")
             }
             if self.commentsMap.count == self.story!.descendants{
-              for id in self.story!.kids! {
-                if let childcomment = self.commentsMap[id] {
-                  self.addChildComment(childcomment, depth: 0)
-                }
-                else{
-                  print("problem id is \(id)")
-                }
-              }
+              self.arrangeCommentsHierarchy()
               self.retrievingComments = false
               self.tableView.reloadData()
               UIApplication.shared.isNetworkActivityIndicatorVisible = false
