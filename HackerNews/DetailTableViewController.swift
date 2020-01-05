@@ -38,8 +38,10 @@ class DetailTableViewController: UITableViewController,
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        
+       
+        let ellipsis = UIImage(named: "Options")
+        let optionButtonIterm = UIBarButtonItem(image: ellipsis, landscapeImagePhone: ellipsis, style: .plain, target: self, action: #selector(displaySortOptions))
+        self.navigationItem.rightBarButtonItem  = optionButtonIterm
         retrieveComments()
         if story!.descendants == 0 {
           self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -139,6 +141,25 @@ class DetailTableViewController: UITableViewController,
   }
     
 
+  
+   // MARK: Action
+  func displaySortOptions(sender: AnyObject)
+  {
+      /*let savingsInformationViewController = storyboard?.instantiateViewControllerWithIdentifier("SavingsAddPopoverVC") as SavingViewController
+
+      savingsInformationViewController.delegate = self
+      savingsInformationViewController.strSaveText=labelText.text
+
+      savingsInformationViewController.modalPresentationStyle = .Popover
+      if let popoverController = savingsInformationViewController.popoverPresentationController {
+          popoverController.sourceView = sender
+          popoverController.sourceRect = sender.bounds
+          popoverController.permittedArrowDirections = .Any
+          popoverController.delegate = self
+      }
+      presentViewController(savingsInformationViewController, animated: true, completion: nil)*/
+  }
+  
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
