@@ -1,9 +1,9 @@
 platform :ios, '11.2'
-use_frameworks!
+#use_frameworks!
 
 def pods
   pod 'Firebase', '2.5.0'
-  pod 'HMSegmentedControl'
+  pod 'HMSegmentedControl',:modular_headers => true 
   #pod 'LCLib', :path => '~/Work/Swift/LCLib'
 end
 
